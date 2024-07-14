@@ -38,6 +38,8 @@ services:
       - /mnt/user/appdata/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
     restart: unless-stopped
+    networks:
+      - mynetwork
   portcheck:
     image: eiqnepm/portcheck:latest
     network_mode: service:gluetun
@@ -75,3 +77,9 @@ services:
       - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
       - /mnt/user/appdata/sabnzbd:/config
     restart: unless-stopped
+    networks:
+      - mynetwork
+      
+  networks:
+    mynetwork:
+      driver: bridge
