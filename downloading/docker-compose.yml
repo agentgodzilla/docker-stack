@@ -21,7 +21,7 @@ services:
     volumes:
       - /mnt/user/appdata/gluetun:/gluetun
     networks:
-      - internal-communication
+      - internal-comms
     ports:
       - 8080:8080 # qbit
       - 8081:8081 # sabnzbd
@@ -78,3 +78,6 @@ services:
       - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
       - /mnt/user/appdata/sabnzbd:/config
     restart: unless-stopped
+
+networks:
+  internal-comms:
