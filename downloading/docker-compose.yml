@@ -22,6 +22,7 @@ services:
       - /mnt/user/appdata/gluetun:/gluetun
     ports:
       - 8080:8080 # qbit
+      - 8081:8081 # sabnzbd
     restart: unless-stopped
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -43,10 +44,23 @@ services:
     env_file:
       - ../stack.env
     environment:
-      QBITTORRENT_PORT: $FIREWALL_VPN_INPUT_PORTS
-      QBITTORRENT_WEBUI_PORT: 8080
-      QBITTORRENT_USERNAME: admin
-      QBITTORRENT_PASSWORD: adminadmin
+      - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
+      - QBITTORRENT_WEBUI_PORT=8080
+      - QBITTORRENT_USERNAME-$QBITTORRENT_USERNAME
+      - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
     depends_on:
       - qbittorrent
+    restart: unless-stopped
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    network_mode: service:gluetun
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/media/downloads:/downloads
+      - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
+      - /mnt/user/appdata/sabnzbd:/config
     restart: unless-stopped
