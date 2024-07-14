@@ -1,6 +1,6 @@
 services:
   plex:
-    image: lscr.io/linuxserver/plex
+    image: lscr.io/linuxserver/plex:latest
     network_mode: host
     environment:
       - VERSION=docker
@@ -15,7 +15,7 @@ services:
       - /dev/dri:/dev/dri
     restart: always
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin
+    image: lscr.io/linuxserver/jellyfin:latest
     environment:
       - PUID=99
       - PGID=100
@@ -29,7 +29,7 @@ services:
       - 8096:8096
     restart: always
   watchstate:
-    image: ghcr.io/arabcoders/watchstate
+    image: ghcr.io/arabcoders/watchstate:latest
     user: 99:100
     environment:
       - WS_CRON_IMPORT=true
