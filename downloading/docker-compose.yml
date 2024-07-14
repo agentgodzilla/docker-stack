@@ -20,8 +20,6 @@ services:
       - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/gluetun:/gluetun
-    networks:
-      - internal-comms
     ports:
       - 8080:8080 # qbit
       - 8081:8081 # sabnzbd
@@ -59,7 +57,7 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - HOST=http://gluetun:8080
+      - HOST=http://127.0.0.1:8080
       - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
