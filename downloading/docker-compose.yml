@@ -40,7 +40,7 @@ services:
   portcheck:
     image: eiqnepm/portcheck:latest
     network_mode: service:gluetun
-     env_file:
+    env_file:
       - ../stack.env
     environment:
       QBITTORRENT_PORT: $FIREWALL_VPN_INPUT_PORTS
