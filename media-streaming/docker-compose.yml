@@ -1,0 +1,6 @@
+services:
+  redis:
+    image: docker.io/redis:latest
+    healthcheck:
+      test: redis-cli ping || exit 1
+    restart: always
