@@ -28,4 +28,22 @@ services:
     ports:
       - 8096:8096
     restart: always
+  watchstate:
+    image: ghcr.io/arabcoders/watchstate
+    user: 99:100
+    environment:
+      - WS_CRON_IMPORT=true
+      - WS_CRON_EXPORT=true
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - WS_TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/watchstate:/config
+    ports:
+      - 8084:8080
+    restart: always
+    depends_on:
+      - plex
+      - jellyfin
   
