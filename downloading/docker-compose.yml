@@ -3,8 +3,8 @@ services:
     image: qmcgaw/gluetun:latest  
     cap_add:
       - NET_ADMIN
-    env_file:
-      - stack.env
+    # env_file:
+    #   - stack.env
     environment:
       - VPN_SERVICE_PROVIDER=custom
       - VPN_TYPE=wireguard
