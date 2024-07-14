@@ -16,7 +16,7 @@ services:
     restart: always
   jellyfin:
     image: lscr.io/linuxserver/jellyfin
-     environment:
+    environment:
       - PUID=99
       - PGID=100
       - UMASK=000
