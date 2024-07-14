@@ -38,8 +38,6 @@ services:
       - /mnt/user/appdata/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
     restart: unless-stopped
-    networks:
-      - bridge 
   portcheck:
     image: eiqnepm/portcheck:latest
     network_mode: service:gluetun
@@ -55,6 +53,7 @@ services:
     restart: unless-stopped
   qbit-tagger:
     image: ghcr.io/milkers69/qbit-tagger:main
+    network_mode: service:gluetun
     env_file:
       - ../stack.env
     environment:
@@ -77,5 +76,3 @@ services:
       - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
       - /mnt/user/appdata/sabnzbd:/config
     restart: unless-stopped
-    networks:
-      - bridge 
