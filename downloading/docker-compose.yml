@@ -20,6 +20,8 @@ services:
       - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/gluetun:/gluetun
+    ports:
+      - 8080:8080 # qbit
     restart: always
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -34,8 +36,4 @@ services:
     volumes:
       - /mnt/user/appdata/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
-    ports:
-      - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
     restart: unless-stopped
