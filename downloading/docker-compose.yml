@@ -60,8 +60,7 @@ services:
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
       - QBITTORRENTAPI_DO_NOT_VERIFY_WEBUI_CERTIFICATE=true
-    entrypoint: sh
-    command: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
+    entrypoint: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
     restart: unless-stopped
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
