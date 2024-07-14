@@ -1,5 +1,6 @@
 services:
   redis:
+    container_name: redis_test
     image: docker.io/redis:latest
     healthcheck:
       test: redis-cli ping || exit 1
