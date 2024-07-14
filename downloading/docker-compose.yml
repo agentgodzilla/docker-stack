@@ -56,8 +56,8 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - HOST="http://qbittorrent:8080"
-      - TAG="Not Working"
+      - HOST=http://qbittorrent:8080
+      - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
     command: while true; do python3 /app/app.py; sleep $(60*15); done
