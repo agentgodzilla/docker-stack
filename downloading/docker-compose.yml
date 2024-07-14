@@ -22,10 +22,10 @@ services:
       - /mnt/user/appdata/gluetun:/gluetun
     ports:
       - 8080:8080 # qbit
-    restart: always
+    restart: unless-stopped
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
-    network_mode: "service:gluetun"
+    network_mode: service:gluetun
     environment:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=45220
@@ -36,4 +36,17 @@ services:
     volumes:
       - /mnt/user/appdata/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
+    restart: unless-stopped
+  portcheck:
+    image: eiqnepm/portcheck:latest
+    network_mode: service:gluetun
+     env_file:
+      - ../stack.env
+    environment:
+      QBITTORRENT_PORT: $FIREWALL_VPN_INPUT_PORTS
+      QBITTORRENT_WEBUI_PORT: 8080
+      QBITTORRENT_USERNAME: admin
+      QBITTORRENT_PASSWORD: adminadmin
+    depends_on:
+      - qbittorrent
     restart: unless-stopped
