@@ -59,6 +59,7 @@ services:
       - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
+      - QBITTORRENTAPI_DO_NOT_VERIFY_WEBUI_CERTIFICATE=true
     command: while true; do python3 /app/app.py; sleep $(60*15); done
     restart: unless-stopped
   sabnzbd:
