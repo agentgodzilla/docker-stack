@@ -56,7 +56,7 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - HOST=qbittorrent:8080
+      - HOST="http://qbittorrent:8080"
       - TAG="Not Working"
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
