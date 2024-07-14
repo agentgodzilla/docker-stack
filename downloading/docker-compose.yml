@@ -21,7 +21,7 @@ services:
     volumes:
       - /mnt/user/appdata/gluetun:/gluetun
     ports:
-      - 8080:8080 # qbit
+      - $QBITTORRENT_WEBUI_PORT:$QBITTORRENT_WEBUI_PORT # qbit
       - 8081:8081 # sabnzbd
     restart: unless-stopped
   qbittorrent:
@@ -44,6 +44,7 @@ services:
     env_file:
       - ../stack.env
     environment:
+      - QBITTORRENT_WEBUI_HOST=$REAL_IP
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
     depends_on:
       - qbittorrent
@@ -54,7 +55,7 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - HOST=http://127.0.0.1:8080
+      - HOST=$REAL_IP:$QBITTORRENT_WEBUI_PORT
       - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
