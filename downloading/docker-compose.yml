@@ -45,9 +45,6 @@ services:
       - ../stack.env
     environment:
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
-      - QBITTORRENT_WEBUI_PORT=8080
-      - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
-      - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
     depends_on:
       - qbittorrent
     restart: unless-stopped
