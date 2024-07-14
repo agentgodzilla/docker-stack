@@ -1,7 +1,13 @@
 services:
-  redis:
-    container_name: redis_test
-    image: docker.io/redis:latest
-    healthcheck:
-      test: redis-cli ping || exit 1
+  plex:
+    image: lscr.io/linuxserver/plex
+    environment:
+      - VERSION=docker
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+    volumes:
+      - /mnt/user/temp:/transcode
+      - /mnt/user/media:/data
+      - /mnt/user/appdata/Plex-Media-Server:/config
     restart: always
