@@ -59,7 +59,6 @@ services:
       - qbittorrent
     networks:
       - internal
-      - external
     restart: unless-stopped
   qbit-tagger:
     image: ghcr.io/milkers69/qbit-tagger:main
@@ -73,7 +72,6 @@ services:
     entrypoint: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
     networks:
       - internal
-      - external
     restart: unless-stopped
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
