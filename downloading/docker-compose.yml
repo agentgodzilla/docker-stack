@@ -1,3 +1,8 @@
+networks:
+  internal:
+    internal: true
+  external:
+
 services:
   gluetun:
     image: qmcgaw/gluetun:latest  
@@ -20,6 +25,9 @@ services:
       - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/gluetun:/gluetun
+    networks:
+      - internal
+      - external
     ports:
       - $QBITTORRENT_WEBUI_PORT:$QBITTORRENT_WEBUI_PORT # qbit
       - 8081:8081 # sabnzbd
