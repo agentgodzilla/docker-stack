@@ -36,7 +36,7 @@ services:
       - internal
       - downloading_internal
     ports:
-      - 9117:9117
+      - 2468:2468
     depends_on:
       - jackett
     restart: unless-stopped
