@@ -73,3 +73,21 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+    
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/radarr:/config
+      - /mnt/user/media:/media
+    networks:
+      - internal
+      - external
+      - downloading_internal
+    ports:
+      - 7878:7878
+    restart: unless-stopped
