@@ -115,3 +115,23 @@ services:
     depends_on:
       - jackett
     restart: unless-stopped
+
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/readarr:/config
+      - /mnt/user/media:/data
+    networks:
+      - internal
+      - external
+      - downloading_internal
+    ports:
+      - 8787:8787
+    depends_on:
+      - jackett
+    restart: unless-stopped
