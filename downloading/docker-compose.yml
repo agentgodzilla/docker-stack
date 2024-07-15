@@ -53,6 +53,8 @@ services:
     environment:
       - QBITTORRENT_WEBUI_HOST=gluetun
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
+      - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
+      - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
     depends_on:
       - qbittorrent
     networks:
