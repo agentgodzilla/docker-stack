@@ -27,7 +27,7 @@ services:
   crossseed:
     image: ghcr.io/cross-seed/cross-seed:5
     user: 99:100
-    entrypoint: sleep 30; /usr/bin/catatonit -- /usr/local/bin/cross-seed daemon
+    command: daemon
     volumes:
       - /mnt/user/appdata/cross-seed:/config
       - /mnt/user/appdata/qbittorrent/qBittorrent/BT_backup/:/torrents
