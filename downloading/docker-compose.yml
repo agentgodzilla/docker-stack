@@ -32,6 +32,7 @@ services:
       - $QBITTORRENT_WEBUI_PORT:$QBITTORRENT_WEBUI_PORT # qbit
       - 8081:8081 # sabnzbd
     restart: unless-stopped
+    
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     network_mode: service:gluetun
@@ -48,6 +49,7 @@ services:
       - /mnt/user/appdata/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
     restart: unless-stopped
+    
   portcheck:
     image: eiqnepm/portcheck:latest
     env_file:
@@ -57,11 +59,12 @@ services:
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
       - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
       - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
-    depends_on:
-      - qbittorrent
     networks:
       - internal
+    depends_on:
+      - qbittorrent
     restart: unless-stopped
+    
   qbit-tagger:
     image: ghcr.io/milkers69/qbit-tagger:main
     env_file:
@@ -74,7 +77,10 @@ services:
     entrypoint: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
     networks:
       - internal
+    depends_on:
+      - qbittorrent
     restart: unless-stopped
+    
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     network_mode: service:gluetun
