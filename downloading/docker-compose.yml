@@ -35,6 +35,8 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     network_mode: service:gluetun
+    env_file:
+      - ../stack.env
     environment:
       - WEBUI_PORT=$QBITTORRENT_WEBUI_PORT
       - TORRENTING_PORT=$TORRENTING_PORT
