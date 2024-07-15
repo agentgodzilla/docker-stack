@@ -112,4 +112,6 @@ services:
       - downloading_internal
     ports:
       - 8686:8686
+    depends_on:
+      - jackett
     restart: unless-stopped
