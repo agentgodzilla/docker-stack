@@ -23,4 +23,20 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
-    
+
+  crossseed:
+    image: ghcr.io/cross-seed/cross-seed:5
+    user: 99:100
+    command: daemon
+    volumes:
+      - /mnt/user/appdata/cross-seed:/config
+      - /mnt/user/appdata/qbittorrent/qBittorrent/BT_backup/:/torrents
+      - /mnt/user/media/downloads/watch:/watch
+      /mnt/user/media/downloads/:/data
+     networks:
+      - internal
+      - external
+      - downloading_internal
+    ports:
+      - 9117:9117 
+    restart: unless-stopped
