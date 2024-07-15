@@ -1,0 +1,26 @@
+networks:
+  internal:
+    internal: true
+  external:
+    
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago  
+    volumes:
+      - /mnt/user/appdata/syncthing:/config
+      - /mnt/user/backup/syncthing:/syncthing
+      - /mnt/user/cloud/immich/library:/photos
+      - /mnt/user/backup/db:/database
+    networks:
+      - external
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
