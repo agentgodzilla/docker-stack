@@ -48,7 +48,6 @@ services:
     restart: unless-stopped
   portcheck:
     image: eiqnepm/portcheck:latest
-    network_mode: service:gluetun
     env_file:
       - ../stack.env
     environment:
@@ -56,10 +55,12 @@ services:
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
     depends_on:
       - qbittorrent
+    networks:
+      - internal
+      - external
     restart: unless-stopped
   qbit-tagger:
     image: ghcr.io/milkers69/qbit-tagger:main
-    network_mode: service:gluetun
     env_file:
       - ../stack.env
     environment:
@@ -69,6 +70,9 @@ services:
       - PASSWORD=$QBITTORRENT_PASSWORD
       - QBITTORRENTAPI_DO_NOT_VERIFY_WEBUI_CERTIFICATE=true
     entrypoint: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
+    networks:
+      - internal
+      - external
     restart: unless-stopped
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
