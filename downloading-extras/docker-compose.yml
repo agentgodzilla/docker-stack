@@ -2,7 +2,7 @@ networks:
   internal:
     internal: true
   external:
-  downloadcrossover:
+  downloading_internal:
     external: true
 
 services:
@@ -34,8 +34,7 @@ services:
       - /mnt/user/media/downloads/:/data
     networks:
       - internal
-      - external
-      - downloadcrossover
+      - downloading_internal
     ports:
       - 2468:2468
     depends_on:
