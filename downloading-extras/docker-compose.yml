@@ -33,7 +33,7 @@ services:
       - /mnt/user/appdata/qbittorrent/qBittorrent/BT_backup/:/torrents
       - /mnt/user/media/downloads/watch:/watch
       - /mnt/user/media/downloads/:/data
-     networks:
+    networks:
       - internal
       - downloading_internal
     ports:
