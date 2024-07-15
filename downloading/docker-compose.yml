@@ -40,7 +40,7 @@ services:
       - ../stack.env
     environment:
       - WEBUI_PORT=$QBITTORRENT_WEBUI_PORT
-      - TORRENTING_PORT=$TORRENTING_PORT
+      - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
       - PUID=99
       - PGID=100
       - UMASK=000
