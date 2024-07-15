@@ -68,6 +68,7 @@ services:
       - /mnt/user/appdata/sonarr:/config
     networks:
       - internal
+      - external
       - downloading_internal
     ports:
       - 8989:8989
