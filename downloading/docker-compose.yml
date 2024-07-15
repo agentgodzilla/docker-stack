@@ -2,8 +2,6 @@ networks:
   internal:
     internal: true
   external:
-  downloadcrossover:
-    external: true
     
 services:
   gluetun:
@@ -31,7 +29,6 @@ services:
     networks:
       - internal
       - external
-      - downloadcrossover
     ports:
       - $QBITTORRENT_WEBUI_PORT:$QBITTORRENT_WEBUI_PORT # qbit
       - 8081:8081 # sabnzbd
@@ -67,7 +64,6 @@ services:
     networks:
       - internal
       - external
-      - downloadcrossover
     depends_on:
       - qbittorrent
     restart: unless-stopped
