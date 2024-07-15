@@ -72,6 +72,8 @@ services:
       - downloading_internal
     ports:
       - 8989:8989
+    depends_on:
+      - jackett
     restart: unless-stopped
     
   radarr:
@@ -90,4 +92,6 @@ services:
       - downloading_internal
     ports:
       - 7878:7878
+    depends_on:
+      - jackett
     restart: unless-stopped
