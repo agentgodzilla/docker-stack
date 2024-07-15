@@ -95,3 +95,21 @@ services:
     depends_on:
       - jackett
     restart: unless-stopped
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/lidarr:/config
+      - /mnt/user/media:/media
+    networks:
+      - internal
+      - external
+      - downloading_internal
+    ports:
+      - 8686:8686
+    restart: unless-stopped
