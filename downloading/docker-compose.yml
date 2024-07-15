@@ -2,9 +2,7 @@ networks:
   internal:
     internal: true
   external:
-  downloading:
-    internal: true
-    external: true
+    
 services:
   gluetun:
     image: qmcgaw/gluetun:latest  
@@ -30,7 +28,6 @@ services:
     networks:
       - internal
       - external
-      - downloading
     ports:
       - $QBITTORRENT_WEBUI_PORT:$QBITTORRENT_WEBUI_PORT # qbit
       - 8081:8081 # sabnzbd
