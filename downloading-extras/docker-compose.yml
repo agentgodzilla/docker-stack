@@ -34,6 +34,7 @@ services:
       - /mnt/user/media/downloads/:/data
     networks:
       - internal
+      - external
       - downloading_internal
     ports:
       - 2468:2468
