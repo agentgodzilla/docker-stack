@@ -1,19 +1,37 @@
+networks:
+  internal:
+    internal: true
+  external:
+  
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
-    network_mode: host
     environment:
       - VERSION=docker
       - PUID=99
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
+    networks:
+      - internal
+      - external
+    ports:
+      - 32400:32400
+      - 1900:1900/udp
+      - 5353:5353/udp
+      - 8324:8324
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+      - 32469:32469
     volumes:
       - /mnt/user/appdata/Plex-Media-Server:/config
       - /mnt/user/media:/data
       - /mnt/user/temp:/transcode
       - /dev/dri:/dev/dri
-    restart: always
+    restart: unless-stopped
+    
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     environment:
@@ -25,9 +43,12 @@ services:
       - /mnt/user/appdata/jellyfin:/config
       - /mnt/user/media:/data
       - /dev/dri:/dev/dri
+    networks:
+      - internal
     ports:
       - 8096:8096
-    restart: always
+    restart: unless-stopped
+    
   watchstate:
     image: ghcr.io/arabcoders/watchstate:latest
     user: 99:100
@@ -37,10 +58,13 @@ services:
       - WS_TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/watchstate:/config
+    networks:
+      - internal
     ports:
       - 8084:8080
-    restart: always
     depends_on:
       - plex
       - jellyfin
+    restart: unless-stopped
+    
   
