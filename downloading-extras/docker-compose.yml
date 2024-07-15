@@ -23,7 +23,6 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
-  
   crossseed:
     image: ghcr.io/cross-seed/cross-seed:5
     user: 99:100
