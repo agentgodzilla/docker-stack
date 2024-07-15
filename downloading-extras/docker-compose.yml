@@ -27,15 +27,16 @@ services:
   crossseed:
     image: ghcr.io/cross-seed/cross-seed:5
     user: 99:100
-    command: daemon
+    command: sh -c "sleep 30"; daemon
     volumes:
       - /mnt/user/appdata/cross-seed:/config
       - /mnt/user/appdata/qbittorrent/qBittorrent/BT_backup/:/torrents
-      - /mnt/user/media/downloads/watch:/watch
       - /mnt/user/media/downloads/:/data
     networks:
       - internal
       - downloading_internal
     ports:
-      - 9117:9117 
+      - 9117:9117
+    depends_on:
+      - jackett
     restart: unless-stopped
