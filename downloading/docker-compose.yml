@@ -37,7 +37,7 @@ services:
     network_mode: service:gluetun
     environment:
       - WEBUI_PORT=$QBITTORRENT_WEBUI_PORT
-      - TORRENTING_PORT=45220
+      - TORRENTING_PORT=$TORRENTING_PORT
       - PUID=99
       - PGID=100
       - UMASK=000
@@ -51,7 +51,7 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - QBITTORRENT_WEBUI_HOST=$REAL_IP
+      - QBITTORRENT_WEBUI_HOST=gluetun
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
     depends_on:
       - qbittorrent
@@ -64,11 +64,10 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - HOST=http://$REAL_IP:$QBITTORRENT_WEBUI_PORT
+      - HOST=http://gluetun:$QBITTORRENT_WEBUI_PORT
       - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
-      - QBITTORRENTAPI_DO_NOT_VERIFY_WEBUI_CERTIFICATE=true
     entrypoint: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
     networks:
       - internal
