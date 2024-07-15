@@ -46,6 +46,9 @@ services:
       - /mnt/user/appdata/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
     restart: unless-stopped
+    networks:
+      - internal
+      - external
   portcheck:
     image: eiqnepm/portcheck:latest
     network_mode: service:gluetun
