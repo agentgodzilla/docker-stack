@@ -2,7 +2,7 @@ networks:
   internal:
     internal: true
   external:
-  downloading_internal:
+  downloadcrossover:
     external: true
 
 services:
@@ -35,7 +35,7 @@ services:
     networks:
       - internal
       - external
-      - downloading_internal
+      - downloadcrossover
     ports:
       - 2468:2468
     depends_on:
