@@ -59,6 +59,7 @@ services:
       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
       - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
       - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
+    entrypoint: sh -c "sleep 30; while true; do python3 /app/app.py; sleep $((60*15)); done"
     networks:
       - internal
     depends_on:
@@ -74,7 +75,7 @@ services:
       - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
-    entrypoint: sh -c "while true; do python3 /app/app.py; sleep $((60*15)); done"
+    entrypoint: sh -c "sleep 30; while true; do python3 /app/app.py; sleep $((60*15)); done"
     networks:
       - internal
     depends_on:
