@@ -1,0 +1,26 @@
+networks:
+  internal:
+    internal: true
+  external:
+  downloading_internal:
+    external: true
+
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    environment:
+      - AUTO_UPDATE=false
+      - DOCKER_MODS=ghcr.io/themepark-dev/theme.park:jackett
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/jackett:/config
+    networks:
+      - internal
+      - external
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+    
