@@ -43,15 +43,15 @@ services:
       - jackett
     restart: unless-stopped
 
-flaresolverr:
-  image: ghcr.io/flaresolverr/flaresolverr:latest
-  environment:
-    - LOG_LEVEL=info
-    - LOG_HTML=false
-    - CAPTCHA_SOLVER=none
-    - TZ=America/Chicago
-  networks:
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=America/Chicago
+    networks:
       - internal
-  ports:
-    - 8191:8191
-  restart: unless-stopped
+    ports:
+      - 8191:8191
+    restart: unless-stopped
