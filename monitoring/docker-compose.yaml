@@ -1,0 +1,40 @@
+networks:
+  internal:
+    internal: true
+  external:
+
+services:
+
+  speedtest-tracker:
+    image: lscr.io/linuxserver/speedtest-tracker:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - DISPLAY_TIMEZONE=America/Chicago
+      - APP_KEY=$APP_KEY
+      - DB_CONNECTION=sqlite
+      - SPEEDTEST_SCHEDULE=5 * * * *
+    volumes:
+      - /mnt/user/appdata/speedtest-tracker:/config
+    networks:
+      - external
+    ports:
+      - 8087:80
+    restart: unless-stopped
+
+  smokeping:
+    image: lscr.io/linuxserver/smokeping:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/smokeping/config:/config
+      - /mnt/user/appdata/smokeping/data:/data
+    networks:
+      - external
+    ports:
+      - 8095:80
+    restart: unless-stopped
