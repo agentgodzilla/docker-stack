@@ -6,11 +6,6 @@ networks:
 services:
   epicgamesfreegames:
     image: charlocharlie/epicgames-freegames:latest
-    environment:
-      - PUID=99
-      - PGID=100
-      - UMASK=000
-      - TZ=America/Chicago  
     volumes:
       - /mnt/user/appdata/epicgames-freegames:/usr/app/config
     networks:
