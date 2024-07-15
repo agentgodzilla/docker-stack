@@ -66,6 +66,7 @@ services:
     networks:
       - internal
       - external
+      - downloadcrossover
     depends_on:
       - qbittorrent
     restart: unless-stopped
