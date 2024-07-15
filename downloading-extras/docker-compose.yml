@@ -32,7 +32,7 @@ services:
       - /mnt/user/appdata/cross-seed:/config
       - /mnt/user/appdata/qbittorrent/qBittorrent/BT_backup/:/torrents
       - /mnt/user/media/downloads/watch:/watch
-      /mnt/user/media/downloads/:/data
+      - /mnt/user/media/downloads/:/data
      networks:
       - internal
       - external
