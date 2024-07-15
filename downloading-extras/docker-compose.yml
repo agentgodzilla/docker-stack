@@ -66,6 +66,9 @@ services:
     volumes:
       - /mnt/user/media:/media
       - /mnt/user/appdata/sonarr:/config
+    networks:
+      - internal
+      - downloading_internal
     ports:
       - 8989:8989
     restart: unless-stopped
