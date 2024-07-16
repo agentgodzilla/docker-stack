@@ -1,0 +1,42 @@
+networks:
+  internal:
+    internal: true
+  external:
+  reverse-proxy_internal:
+    external: true
+
+# services:
+#   vaultwarden:
+#     image: vaultwarden/server:latest
+#     env_file:
+#       - ../stack.env
+#     environment:
+#       - DOMAIN=$DOMAIN
+#       - SIGNUPS_ALLOWED=false
+#     volumes:
+#       - /mnt/user/appdata/vaultwarden/vaultwarden:/data
+#     networks:
+#       - external
+#       - internal
+#       - reverse-proxy_internal
+#     ports:
+#       - 4743:80
+#     restart: unless-stopped
+
+  postgres:
+    image: postgres:14
+    restart: always
+     env_file:
+      - ../stack.env
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      #- POSTGRES_DB=vaultwarden
+    volumes:
+      - /mnt/user/appdata/vaultwarden/postgresql14:/var/lib/postgresql/data
+    networks:
+      - internal
+      - external
+    ports:
+      - 6969:5432
+    restart: unless-stopped
