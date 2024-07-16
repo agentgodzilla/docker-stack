@@ -8,6 +8,8 @@ services:
     image: lscr.io/linuxserver/swag
     cap_add:
       - NET_ADMIN
+    env_file:
+      - ../stack.env
     environment:
       - PUID=99
       - PGID=100
@@ -32,6 +34,8 @@ services:
     image: oznu/cloudflare-ddns:latest
     networks:
       - external
+    env_file:
+      - ../stack.env
     environment:
       - API_KEY=$API_KEY
       - ZONE=$DOMAIN
