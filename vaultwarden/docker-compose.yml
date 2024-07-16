@@ -26,7 +26,7 @@ networks:
   postgres:
     image: postgres:14
     restart: always
-     env_file:
+    env_file:
       - ../stack.env
     environment:
       - POSTGRES_USER=${DB_USERNAME}
