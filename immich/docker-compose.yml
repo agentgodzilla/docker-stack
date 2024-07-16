@@ -28,7 +28,7 @@ services:
       - 2283:3001
     depends_on:
       - redis
-      - database
+      - postgres
     restart: unless-stopped
 
   immich-machine-learning:
