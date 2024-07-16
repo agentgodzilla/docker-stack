@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
 
   makemkv:
-    image: binhex/arch-makemkv
+    image: binhex/arch-makemkv:latest
     environment:
       - PUID=99
       - PGID=100
@@ -47,4 +47,22 @@ services:
       - external
     ports:
       - 6080:6080
+    restart: unless-stopped
+
+  mkvtoolnix:
+    image: jlesage/mkvtoolnix:latest
+    environment:
+      - USER_ID=99
+      - GROUP_ID=100
+      - UMASK=000
+      - DISPLAY_WIDTH=1280
+      - DISPLAY_HEIGHT=768
+    volumes:
+      - /mnt/user/media:/storage
+      - /mnt/user/appdata/MKVToolNix:/config
+    networks:
+      - external
+    ports:
+      - 7805:5800
+      - 7905:5900
     restart: unless-stopped
