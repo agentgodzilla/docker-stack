@@ -61,6 +61,7 @@ services:
       - /mnt/user/appdata/watchstate:/config
     networks:
       - internal
+      - external
     ports:
       - 8084:8080
     depends_on:
