@@ -21,6 +21,7 @@ services:
       - /mnt/user/appdata/swag:/config
     networks:
       - external
+      - internal
     ports:
       - 44301:443
       - 8001:80
