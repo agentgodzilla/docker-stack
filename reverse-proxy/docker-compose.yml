@@ -1,0 +1,39 @@
+networks:
+  internal:
+    internal: true
+  external:
+
+services:
+  swag:
+    image: lscr.io/linuxserver/swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=99
+      - PGID=100
+      - TZ=America/Chicago
+      - URL=$DOMAIN
+      - SUBDOMAINS=wildcard
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
+      - DOCKER_MODS=linuxserver/mods:swag-dashboard|linuxserver/mods:swag-auto-reload
+    volumes:
+      - /mnt/user/appdata/swag:/config
+    networks:
+      - external
+    ports:
+      - 44301:443
+      - 8001:80
+      - 89:81
+    restart: unless-stopped
+    
+  cloudflareddns:
+    image: oznu/cloudflare-ddns:latest
+    networks:
+      - external
+    environment:
+      - API_KEY=$API_KEY
+      - ZONE=$DOMAIN
+      - SUBDOMAIN=subdomain
+      - PROXIED=true
+    restart: unless-stopped
