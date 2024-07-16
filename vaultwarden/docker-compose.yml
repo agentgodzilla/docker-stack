@@ -5,7 +5,7 @@ networks:
   reverse-proxy_internal:
     external: true
 
-# services:
+services:
 #   vaultwarden:
 #     image: vaultwarden/server:latest
 #     env_file:
