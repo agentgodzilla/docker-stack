@@ -58,7 +58,7 @@ services:
       POSTGRES_DB: immich
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
-      - mnt/user/appdata/immich/postgresql14:/var/lib/postgresql/data
+      - /mnt/user/appdata/immich/postgresql14:/var/lib/postgresql/data
     networks:
       - internal
     healthcheck:
