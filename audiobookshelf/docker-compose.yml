@@ -11,7 +11,7 @@ services:
     user: 99:100
     networks:
       - external
-      - proxy_internal
+      - reverse-proxy_internal
     ports:
       - 13378:80
     volumes:
