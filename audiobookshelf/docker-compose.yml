@@ -1,0 +1,23 @@
+networks:
+  internal:
+    internal: true
+  external:
+  reverse-proxy_internal:
+    external: true
+
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    user: 99:100
+    networks:
+      - external
+      - proxy_internal
+    ports:
+      - 13378:80
+    volumes:
+      - /mnt/user/media/Audiobooks:/audiobooks
+      - /mnt/user/media/Podcasts:/podcasts
+      - /mnt/user/appdata/audiobookshelf:/config
+      - /mnt/user/appdata/audiobookshelf/metadata:/metadata
+    environment:
+      - TZ=America/Chicago
