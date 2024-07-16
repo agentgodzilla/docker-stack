@@ -4,6 +4,7 @@ networks:
   external:
     
 services:
+  
   epicgamesfreegames:
     image: charlocharlie/epicgames-freegames:latest
     volumes:
@@ -16,4 +17,19 @@ services:
       resources:
         limits:
           memory: 2G
+    restart: unless-stopped
+
+  thelounge:
+    image: lscr.io/linuxserver/thelounge:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/thelounge:/config
+    networks:
+      - external
+    ports:
+      - 9000:9000
     restart: unless-stopped
