@@ -1,0 +1,65 @@
+networks:
+  internal:
+    internal: true
+  external:
+  reverse-proxy_internal:
+    external: true
+
+services:
+  # mealie:
+  #   image: ghcr.io/mealie-recipes/mealie:latest
+  #   env_file:
+  #     - ../stack.env
+  #   volumes:
+  #     - /mnt/user/appdata/mealie/mealie:/app/data/
+  #   environment:
+  #     - ALLOW_SIGNUP=false
+  #     - PUID=99
+  #     - PGID=100
+  #     - TZ=America/Chicago
+  #     - MAX_WORKERS=1
+  #     - WEB_CONCURRENCY=1
+  #     - BASE_URL=$DOMAIN
+  #     - DB_ENGINE=postgres
+  #     - POSTGRES_USER=$POSTGRES_USER
+  #     - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+  #     - POSTGRES_SERVER=postgres
+  #     - POSTGRES_PORT=5432
+  #     - POSTGRES_DB=mealie
+  #   networks:
+  #     - external
+  #     - internal
+  #     - reverse-proxy_internal
+  #   ports:
+  #       - 9925:9000
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 1000M 
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   restart: unless-stopped
+    
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    env_file:
+      - ../stack.env
+    volumes:
+      - /mnt/user/appdata/mealie/postgres15:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    networks:
+      - external
+      - internal
+    ports:
+        - 6969:5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+  
