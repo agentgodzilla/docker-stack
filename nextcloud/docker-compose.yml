@@ -42,7 +42,7 @@ services:
       - external
       - proxy_internal
     ports:
-      9980:9980
+      - 9980:9980
     restart: unless-stopped
     
   postgres:
