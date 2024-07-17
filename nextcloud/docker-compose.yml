@@ -25,8 +25,26 @@ services:
   #       condition: service_healthy
   #     redis:
   #       condition: service_healthy
+  #     collabora:
   #   restart: unless-stopped
-      
+
+  collabora:
+    image: collabora/code:latest
+     env_file:
+      - ../stack.env
+    environment:
+      - username=$COLLABORA_USERNAME
+      - password=$COLLABORA_PASSWORD
+      - dictionaries=de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru
+      aliasgroup1=$DOMAIN
+    networks:
+      - internal
+      - external
+      - proxy_internal
+    ports:
+      9980:9980
+    restart: unless-stopped
+    
   postgres:
     image: postgres:16
     volumes:
