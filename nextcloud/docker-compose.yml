@@ -26,6 +26,7 @@ services:
       redis:
         condition: service_healthy
       collabora:
+        condition: service_started
     restart: unless-stopped
 
   collabora:
