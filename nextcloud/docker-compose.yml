@@ -19,7 +19,7 @@ services:
       - external
       - reverse-proxy_internal
     ports:
-      8666:80
+      - 8666:80
     depends_on:
       postgres:
         condition: service_healthy
