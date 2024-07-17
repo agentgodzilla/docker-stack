@@ -2,7 +2,9 @@ networks:
   internal:
     internal: true
   external:
-  
+  downloading_internal:
+    external: true
+    
 services:
   calibre:
     image: lscr.io/linuxserver/calibre:latest
@@ -17,6 +19,7 @@ services:
     networks:
       - internal
       - external
+      - downloading_internal
     ports:
       - 9080:8080
       - 9181:8181
@@ -39,4 +42,6 @@ services:
       - external
     ports:
       - 8083:8083
+    depends_on:
+      - calibre
     restart: unless-stopped
