@@ -1,0 +1,33 @@
+networks:
+  br0:
+    external: true
+    
+services:
+
+  unboundpihole:
+    image: ghcr.io/milkers69/docker-pihole-unbound:latest
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - ../stack.env
+    environment:
+      - WEBPASSWORD=$WEBPASSWORD
+      - ServerIP=$IP_ADDRESS
+      - INTERFACE=eth0
+      - IPv6=False
+      - DNSMASQ_LISTENING=all
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/pihole-dot-doh/pihole:/etc/pihole
+      - /mnt/user/appdata/pihole-dot-doh/dnsmasq.d:/etc/dnsmasq.d
+      - /mnt/user/appdata/pihole-dot-doh/config:/config
+    networks:
+      br0:
+        ipv4_address: $IP_ADDRESS
+    ports:
+      - 443:443
+      - 53:53
+      - 53:53/udp
+      - 67:67/udp 
+      - 80:80
+    restart: unless-stopped
