@@ -7,27 +7,27 @@ networks:
 
 services:
 
-  nextcloud:
-    image: nextcloud:latest
-    volumes:
-      - /mnt/user/appdata/nextcloud/nextcloud/html:/var/www/html
-      - /mnt/user/appdata/nextcloud/nextcloud/apps:/var/www/html/custom_apps
-      - /mnt/user/appdata/nextcloud/nextcloud/config:/var/www/html/config
-      - /mnt/user/cloud/nextcloud/data:/var/www/html/data
-    networks:
-      - internal
-      - external
-      - reverse-proxy_internal
-    ports:
-      - 8666:80
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      collabora:
-        condition: service_started
-    restart: unless-stopped
+  # nextcloud:
+  #   image: nextcloud:latest
+  #   volumes:
+  #     - /mnt/user/appdata/nextcloud/nextcloud/html:/var/www/html
+  #     - /mnt/user/appdata/nextcloud/nextcloud/apps:/var/www/html/custom_apps
+  #     - /mnt/user/appdata/nextcloud/nextcloud/config:/var/www/html/config
+  #     - /mnt/user/cloud/nextcloud/data:/var/www/html/data
+  #   networks:
+  #     - internal
+  #     - external
+  #     - reverse-proxy_internal
+  #   ports:
+  #     - 8666:80
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #     collabora:
+  #       condition: service_started
+  #   restart: unless-stopped
 
   collabora:
     image: collabora/code:latest
@@ -58,6 +58,9 @@ services:
       - POSTGRES_DB=nextcloud
     networks:
       - internal
+      - external
+    ports:
+      - 5432
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 30s
