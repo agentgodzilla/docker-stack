@@ -1,0 +1,41 @@
+networks:
+  internal:
+    internal: true
+  external:
+  
+services:
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/calibre:/config
+    networks:
+      - internal
+      - external
+    ports:
+      - 9080:8080
+      - 9181:8181
+      - 9081:8081
+    restart: unless-stopped
+    
+  calibreweb:
+    image: lscr.io/linuxserver/calibre-web:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+      - DOCKER_MODS=linuxserver/mods:universal-calibre
+    volumes:
+      - /mnt/user/appdata/calibre-web:/config
+      - /mnt/user/media/Books:/books
+    networks:
+      - internal
+      - external
+    ports:
+      - 8083:8083
+    restart: unless-stopped
