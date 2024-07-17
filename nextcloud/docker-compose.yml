@@ -30,7 +30,7 @@ services:
 
   collabora:
     image: collabora/code:latest
-     env_file:
+    env_file:
       - ../stack.env
     environment:
       - username=$COLLABORA_USERNAME
