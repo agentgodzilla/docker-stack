@@ -13,6 +13,7 @@ services:
       - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/calibre:/config
+      - /mnt/user/media:/data
     networks:
       - internal
       - external
