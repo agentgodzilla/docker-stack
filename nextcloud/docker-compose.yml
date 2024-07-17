@@ -58,6 +58,8 @@ services:
     networks:
       - internal
       - external
+    ports:
+      - 5432:5432
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 30s
