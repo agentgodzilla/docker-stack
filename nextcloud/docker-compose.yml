@@ -17,7 +17,7 @@ services:
   #   networks:
   #     - internal
   #     - external
-  #     - proxy_internal
+  #     - reverse-proxy_internal
   #   ports:
   #     8666:80
   #   depends_on:
@@ -40,7 +40,7 @@ services:
     networks:
       - internal
       - external
-      - proxy_internal
+      - reverse-proxy_internal
     ports:
       - 9980:9980
     restart: unless-stopped
