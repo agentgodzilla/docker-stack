@@ -49,7 +49,7 @@ services:
   postgres:
     image: postgres:16
     volumes:
-      - /mnt/user/appdata/mealie/postgres:/var/lib/postgresql/data
+      - /mnt/user/appdata/nextcloud/postgres:/var/lib/postgresql/data
     env_file:
       - ../stack.env
     environment:
