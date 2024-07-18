@@ -20,7 +20,7 @@ services:
       - DNSPLUGIN=cloudflare
       - DOCKER_MODS=linuxserver/mods:swag-dashboard|linuxserver/mods:swag-auto-reload
     volumes:
-      - /mnt/user/appdata/swag:/config
+      - /mnt/user/appdata/reverse-proxy/swag:/config
     networks:
       - external
       - internal
