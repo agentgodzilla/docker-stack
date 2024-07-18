@@ -26,7 +26,7 @@ services:
       - 32414:32414/udp
       - 32469:32469
     volumes:
-      - /mnt/user/appdata/Plex-Media-Server:/config
+      - /mnt/user/appdata/media-streaming/Plex-Media-Server:/config
       - /mnt/user/media:/data
       - /mnt/user/temp:/transcode
       - /dev/dri:/dev/dri
@@ -40,7 +40,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/jellyfin:/config
+      - /mnt/user/appdata/media-streaming/jellyfin:/config
       - /mnt/user/media:/data
       - /dev/dri:/dev/dri
     networks:
@@ -58,7 +58,7 @@ services:
       - WS_CRON_EXPORT=true
       - WS_TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/watchstate:/config
+      - /mnt/user/appdata/media-streaming/watchstate:/config
     networks:
       - internal
       - external
