@@ -14,7 +14,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/calibre:/config
+      - /mnt/user/appdata/calibre/calibre:/config
       - /mnt/user/media:/data
     networks:
       - internal
@@ -35,7 +35,7 @@ services:
       - TZ=America/Chicago
       - DOCKER_MODS=linuxserver/mods:universal-calibre
     volumes:
-      - /mnt/user/appdata/calibre-web:/config
+      - /mnt/user/appdata/calibre/calibre-web:/config
       - /mnt/user/media/Books:/books
     networks:
       - internal
