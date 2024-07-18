@@ -12,7 +12,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago  
     volumes:
-      - /mnt/user/appdata/syncthing:/config
+      - /mnt/user/appdata/backups/syncthing:/config
       - /mnt/user/backup/syncthing:/syncthing
       - /mnt/user/cloud/immich/library:/photos
       - /mnt/user/backup/db:/database
