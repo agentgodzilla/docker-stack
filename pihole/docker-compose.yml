@@ -18,9 +18,9 @@ services:
       - DNSMASQ_LISTENING=all
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/pihole-dot-doh/pihole:/etc/pihole
-      - /mnt/user/appdata/pihole-dot-doh/dnsmasq.d:/etc/dnsmasq.d
-      - /mnt/user/appdata/pihole-dot-doh/config:/config
+      - /mnt/user/appdata/pihole/pihole-dot-doh/pihole:/etc/pihole
+      - /mnt/user/appdata/pihole/pihole-dot-doh/dnsmasq.d:/etc/dnsmasq.d
+      - /mnt/user/appdata/pihole/pihole-dot-doh/config:/config
     networks:
       br0:
         ipv4_address: $IP_ADDRESS
