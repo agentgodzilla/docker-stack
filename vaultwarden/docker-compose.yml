@@ -36,7 +36,7 @@ services:
       - POSTGRES_PASSWORD=$DB_PASSWORD
       - POSTGRES_DB=vaultwarden
     volumes:
-      - /mnt/user/appdata/vaultwarden/postgresql14:/var/lib/postgresql/data
+      - /mnt/user/appdata/vaultwarden/postgresql:/var/lib/postgresql/data
     networks:
       - internal
     healthcheck:
