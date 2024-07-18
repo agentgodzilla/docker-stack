@@ -54,7 +54,7 @@ services:
     env_file:
       - ../stack.env
     volumes:
-      - /mnt/user/appdata/mealie/postgres15:/var/lib/postgresql/data
+      - /mnt/user/appdata/mealie/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
