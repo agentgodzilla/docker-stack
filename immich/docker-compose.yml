@@ -6,46 +6,46 @@ networks:
     external: true
     
 services:
-  # immichserver:
-  #   image: ghcr.io/immich-app/immich-server:release
-  #   env_file:
-  #     - ../stack.env
-  #   environment:
-  #     - DB_HOSTNAME=postgres
-  #     - DB_PORT=5432
-  #     - DB_DATABASE_NAME=immich
-  #     - DB_USERNAME=$DB_USERNAME
-  #     - DB_PASSWORD=$DB_PASSWORD
-  #     - TZ=America/Chicago
-  #   volumes:
-  #     - /mnt/user/cloud/immich:/usr/src/app/upload
-  #     - /etc/localtime:/etc/localtime:ro
-  #   networks:
-  #     - external
-  #     - internal
-  #     - reverse-proxy_internal
-  #   ports:
-  #     - 2283:3001
-  #   depends_on:
-  #     - redis
-  #     - postgres
-  #   restart: unless-stopped
+  immichserver:
+    image: ghcr.io/immich-app/immich-server:release
+    env_file:
+      - ../stack.env
+    environment:
+      - DB_HOSTNAME=postgres
+      - DB_PORT=5432
+      - DB_DATABASE_NAME=immich
+      - DB_USERNAME=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/cloud/immich:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - external
+      - internal
+      - reverse-proxy_internal
+    ports:
+      - 2283:3001
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
 
-  # immich-machine-learning:
-  #   image: ghcr.io/immich-app/immich-machine-learning:release
-  #   volumes:
-  #     - model-cache:/cache
-  #   networks:
-  #     - internal
-  #   restart: unless-stopped
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    volumes:
+      - model-cache:/cache
+    networks:
+      - internal
+    restart: unless-stopped
 
-  # redis:
-  #   image: docker.io/redis:6.2-alpine@sha256:328fe6a5822256d065debb36617a8169dbfbd77b797c525288e465f56c1d392b
-  #   healthcheck:
-  #     test: redis-cli ping || exit 1
-  #   networks:
-  #     - internal
-  #   restart: unless-stopped
+  redis:
+    image: docker.io/redis:6.2-alpine@sha256:328fe6a5822256d065debb36617a8169dbfbd77b797c525288e465f56c1d392b
+    healthcheck:
+      test: redis-cli ping || exit 1
+    networks:
+      - internal
+    restart: unless-stopped
 
   postgres:
     image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
@@ -61,9 +61,6 @@ services:
       - /mnt/user/appdata/immich/postgresql14:/var/lib/postgresql/data
     networks:
       - internal
-      - external
-    ports:
-      - 6969:5432
     healthcheck:
       test: pg_isready --dbname='immich' --username='$DB_USERNAME' || exit 1; Chksum="$$(psql --dbname='immich' --username='$DB_USERNAME' --tuples-only --no-align --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')"; echo "checksum failure count is $$Chksum"; [ "$$Chksum" = '0' ] || exit 1
       interval: 5m
