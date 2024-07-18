@@ -16,7 +16,7 @@ services:
       - DB_CONNECTION=sqlite
       - SPEEDTEST_SCHEDULE=5 * * * *
     volumes:
-      - /mnt/user/appdata/speedtest-tracker:/config
+      - /mnt/user/appdata/monitoring/speedtest-tracker:/config
     networks:
       - external
     ports:
@@ -31,8 +31,8 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/smokeping/config:/config
-      - /mnt/user/appdata/smokeping/data:/data
+      - /mnt/user/appdata/monitoring/smokeping/config:/config
+      - /mnt/user/appdata/monitoring/smokeping/data:/data
     networks:
       - external
     ports:
