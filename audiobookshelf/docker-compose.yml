@@ -17,7 +17,7 @@ services:
     volumes:
       - /mnt/user/media/Audiobooks:/audiobooks
       - /mnt/user/media/Podcasts:/podcasts
-      - /mnt/user/appdata/audiobookshelf:/config
-      - /mnt/user/appdata/audiobookshelf/metadata:/metadata
+      - /mnt/user/appdata/audiobookshelf/audiobookshelf:/config
+      - /mnt/user/appdata/audiobookshelf/audiobookshelf/metadata:/metadata
     environment:
       - TZ=America/Chicago
