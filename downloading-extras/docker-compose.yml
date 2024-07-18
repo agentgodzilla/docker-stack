@@ -16,7 +16,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/jackett:/config
+      - /mnt/user/appdata/downloading-extras/jackett:/config
     networks:
       - internal
       - external
@@ -31,8 +31,8 @@ services:
     user: 99:100
     command: daemon
     volumes:
-      - /mnt/user/appdata/cross-seed:/config
-      - /mnt/user/appdata/qbittorrent/qBittorrent/BT_backup/:/torrents
+      - /mnt/user/appdata/downloading-extras/cross-seed:/config
+      - /mnt/user/appdata/downloading/qbittorrent/qBittorrent/BT_backup/:/torrents
       - /mnt/user/media/downloads/:/data
     networks:
       - internal
@@ -65,7 +65,7 @@ services:
       - TZ=America/Chicago
     volumes:
       - /mnt/user/media:/media
-      - /mnt/user/appdata/sonarr:/config
+      - /mnt/user/appdata/downloading-extras/sonarr:/config
     networks:
       - internal
       - external
@@ -84,7 +84,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/radarr:/config
+      - /mnt/user/appdata/downloading-extras/radarr:/config
       - /mnt/user/media:/media
     networks:
       - internal
@@ -104,7 +104,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/lidarr:/config
+      - /mnt/user/appdata/downloading-extras/lidarr:/config
       - /mnt/user/media:/media
     networks:
       - internal
@@ -124,7 +124,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/readarr:/config
+      - /mnt/user/appdata/downloading-extras/readarr:/config
       - /mnt/user/media:/data
     networks:
       - internal
@@ -144,7 +144,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/readarr-audiobook:/config
+      - /mnt/user/appdata/downloading-extras/readarr-audiobook:/config
       - /mnt/user/media:/data
     networks:
       - internal
