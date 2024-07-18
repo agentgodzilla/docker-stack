@@ -8,7 +8,7 @@ services:
   epicgamesfreegames:
     image: charlocharlie/epicgames-freegames:latest
     volumes:
-      - /mnt/user/appdata/epicgames-freegames:/usr/app/config
+      - /mnt/user/appdata/miscellaneous/epicgames-freegames:/usr/app/config
     networks:
       - external
     ports:
@@ -27,7 +27,7 @@ services:
       - UMASK=000
       - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/thelounge:/config
+      - /mnt/user/appdata/miscellaneous/thelounge:/config
     networks:
       - external
     ports:
@@ -41,7 +41,7 @@ services:
       - PGID=100
       - UMASK=000
     volumes:
-      - /mnt/user/appdata/makemkv:/config
+      - /mnt/user/appdata/miscellaneous/makemkv:/config
       - /mnt/user/media:/media
     networks:
       - external
@@ -59,7 +59,7 @@ services:
       - DISPLAY_HEIGHT=768
     volumes:
       - /mnt/user/media:/storage
-      - /mnt/user/appdata/MKVToolNix:/config
+      - /mnt/user/appdata/miscellaneous/MKVToolNix:/config
     networks:
       - external
     ports:
