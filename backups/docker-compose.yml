@@ -13,9 +13,8 @@ services:
       - TZ=America/Chicago  
     volumes:
       - /mnt/user/appdata/backups/syncthing:/config
-      - /mnt/user/backup/syncthing:/syncthing
-      - /mnt/user/cloud/immich/library:/photos
-      - /mnt/user/backup/db:/database
+      - /mnt/user/backup:/backup
+      - /mnt/user/cloud:/cloud
     networks:
       - external
     ports:
