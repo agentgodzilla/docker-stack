@@ -62,9 +62,6 @@ services:
       - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
       - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
     entrypoint: sh -c "sleep 30; /app"
-    networks:
-      - internal
-      - external
     depends_on:
       - qbittorrent
     restart: unless-stopped
