@@ -53,6 +53,7 @@ services:
     
   portcheck:
     image: eiqnepm/portcheck:latest
+    network_mode: "service:gluetun"
     env_file:
       - ../stack.env
     environment:
