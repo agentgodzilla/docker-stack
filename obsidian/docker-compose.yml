@@ -48,6 +48,7 @@ services:
       - /mnt/user/appdata/obsidian/couchdb/etc/local.d:/opt/couchdb/etc/local.d
     networks:
       - internal
+      - external
     ports:
       - 5984:5984
     healthcheck:
