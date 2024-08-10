@@ -1,0 +1,59 @@
+networks:
+  internal:
+    internal: true
+  external:
+    
+services:
+
+  obsidian:
+    image: lscr.io/linuxserver/obsidian:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago  
+    volumes:
+      - /mnt/user/appdata/obsidian/obsidian:/config
+    networks:
+      - internal
+      - external
+    ports:
+      - 3000:3000
+      - 3001:3001
+    shm_size: "1gb"
+    healthcheck:
+      test: "curl --fail -s http://localhost:3000/ || exit 1"
+      start_period: 60s
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      couchdb:
+        condition: service_healthy
+    restart: unless-stopped
+    
+  couchdb:
+    image: couchdb:latest
+    env_file:
+      - ../stack.env
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago  
+      - COUCHDB_USER=$COUCHDB_USER
+      - COUCHDB_PASSWORD=$COUCHDB_PASSWORD
+    volumes:
+      - /mnt/user/appdata/obsidian/couchdb/data:/opt/couchdb/data
+      - /mnt/user/appdata/obsidian/couchdb/etc/local.d:/opt/couchdb/etc/local.d
+    networks:
+      - internal
+    ports:
+      - 5984:5984
+    healthcheck:
+      test: curl --fail -s http://localhost:5984/_up | grep -Eo '\"status\":\"ok\"' || exit 1
+      start_period: 60s
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
