@@ -12,6 +12,8 @@ services:
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
+    devices:
+      - /dev/dri:/dev/dri
     networks:
       - internal
       - external
@@ -29,7 +31,6 @@ services:
       - /mnt/user/appdata/media-streaming/Plex-Media-Server:/config
       - /mnt/user/media:/data
       - /mnt/user/temp:/transcode
-      - /dev/dri:/dev/dri
     restart: unless-stopped
     
   jellyfin:
@@ -39,10 +40,11 @@ services:
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
+    devices:
+      - /dev/dri:/dev/dri
     volumes:
       - /mnt/user/appdata/media-streaming/jellyfin:/config
       - /mnt/user/media:/data
-      - /dev/dri:/dev/dri
     networks:
       - internal
       - external
