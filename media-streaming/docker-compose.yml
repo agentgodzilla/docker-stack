@@ -33,42 +33,42 @@ services:
       - /mnt/user/temp:/transcode
     restart: unless-stopped
     
-  jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
-    environment:
-      - PUID=99
-      - PGID=100
-      - UMASK=000
-      - TZ=America/Chicago
-    devices:
-      - /dev/dri:/dev/dri
-    volumes:
-      - /mnt/user/appdata/media-streaming/jellyfin:/config
-      - /mnt/user/media:/data
-    networks:
-      - internal
-      - external
-    ports:
-      - 8096:8096
-    restart: unless-stopped
+  # jellyfin:
+  #   image: lscr.io/linuxserver/jellyfin:latest
+  #   environment:
+  #     - PUID=99
+  #     - PGID=100
+  #     - UMASK=000
+  #     - TZ=America/Chicago
+  #   devices:
+  #     - /dev/dri:/dev/dri
+  #   volumes:
+  #     - /mnt/user/appdata/media-streaming/jellyfin:/config
+  #     - /mnt/user/media:/data
+  #   networks:
+  #     - internal
+  #     - external
+  #   ports:
+  #     - 8096:8096
+  #   restart: unless-stopped
     
-  watchstate:
-    image: ghcr.io/arabcoders/watchstate:latest
-    user: 99:100
-    environment:
-      - WS_CRON_IMPORT=true
-      - WS_CRON_EXPORT=true
-      - WS_TZ=America/Chicago
-    volumes:
-      - /mnt/user/appdata/media-streaming/watchstate:/config
-    networks:
-      - internal
-      - external
-    ports:
-      - 8084:8080
-    depends_on:
-      - plex
-      - jellyfin
-    restart: unless-stopped
+  # watchstate:
+  #   image: ghcr.io/arabcoders/watchstate:latest
+  #   user: 99:100
+  #   environment:
+  #     - WS_CRON_IMPORT=true
+  #     - WS_CRON_EXPORT=true
+  #     - WS_TZ=America/Chicago
+  #   volumes:
+  #     - /mnt/user/appdata/media-streaming/watchstate:/config
+  #   networks:
+  #     - internal
+  #     - external
+  #   ports:
+  #     - 8084:8080
+  #   depends_on:
+  #     - plex
+  #     - jellyfin
+  #   restart: unless-stopped
     
   
