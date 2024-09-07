@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     
   crossseed:
-    image: ghcr.io/cross-seed/cross-seed:5
+    image: ghcr.io/cross-seed/cross-seed:6.0.0-34
     user: 99:100
     command: daemon
     volumes:
