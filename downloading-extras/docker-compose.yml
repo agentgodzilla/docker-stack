@@ -33,7 +33,7 @@ services:
     volumes:
       - /mnt/user/appdata/downloading-extras/cross-seed:/config
       - /mnt/user/appdata/downloading/qbittorrent/qBittorrent/BT_backup/:/torrents
-      - /mnt/user/media/downloads/:/data
+      - /mnt/user/media:/data
     networks:
       - internal
       - downloading_internal
