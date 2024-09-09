@@ -27,15 +27,13 @@ services:
     restart: unless-stopped
     
   crossseed:
-    image: ghcr.io/cross-seed/cross-seed:6.0.0-34
+    image: ghcr.io/cross-seed/cross-seed:master
     user: 99:100
     command: daemon
     volumes:
       - /mnt/user/appdata/downloading-extras/cross-seed:/config
       - /mnt/user/appdata/downloading/qbittorrent/qBittorrent/BT_backup:/torrents
       - /mnt/user/media/downloads:/downloads
-      - /mnt/user/media/downloads/links:/links
-      - /mnt/user/media/downloads/watch:/watch
     networks:
       - internal
       - downloading_internal
