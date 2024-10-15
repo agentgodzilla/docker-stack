@@ -68,14 +68,13 @@ services:
 
   immich-kiosk:
     image: damongolding/immich-kiosk:latest
-    container_name: immich-kiosk
     env_file:
       - ../stack.env
     environment:
       TZ: "America/Chicago"
       # Required settings
       KIOSK_IMMICH_API_KEY: $IMMICH_API_TOKEN
-      KIOSK_IMMICH_URL: immich:2283
+      KIOSK_IMMICH_URL: immichserver:2283
       # Clock
       KIOSK_SHOW_TIME: TRUE
       KIOSK_TIME_FORMAT: 12
