@@ -74,7 +74,7 @@ services:
       TZ: "America/Chicago"
       # Required settings
       KIOSK_IMMICH_API_KEY: $IMMICH_API_TOKEN
-      KIOSK_IMMICH_URL: immichserver:2283
+      KIOSK_IMMICH_URL: immichserver:3001
       # Clock
       KIOSK_SHOW_TIME: TRUE
       KIOSK_TIME_FORMAT: 12
