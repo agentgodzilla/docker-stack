@@ -66,5 +66,66 @@ services:
       interval: 5m
     restart: unless-stopped
 
+  immich-kiosk:
+    image: damongolding/immich-kiosk:latest
+    container_name: immich-kiosk
+    env_file:
+      - ../stack.env
+    environment:
+      TZ: "America/Chicago"
+      # Required settings
+      KIOSK_IMMICH_API_KEY: $IMMICH_API_TOKEN
+      KIOSK_IMMICH_URL: immich:2283
+      # Clock
+      KIOSK_SHOW_TIME: TRUE
+      KIOSK_TIME_FORMAT: 12
+      KIOSK_SHOW_DATE: TRUE
+      KIOSK_DATE_FORMAT: "DDDD MMMM DD YYYY"
+      # Kiosk behaviour
+      KIOSK_REFRESH: 60
+      KIOSK_DISABLE_SCREENSAVER: TRUE
+      # Asset sources
+      KIOSK_SHOW_ARCHIVED: FALSE
+      KIOSK_ALBUM: "bff87026-9e29-4c7d-b6ae-53c6ff5f78ab, baa70b3a-7e4e-42f2-bc37-6717048ccbb7"
+      KIOSK_PERSON: "f459f375-aa1e-4b91-b428-a1e491a62dcb, 330ae4b2-07e4-4141-bf28-f1a23781bb00"
+      # UI
+      KIOSK_DISABLE_UI: FALSE
+      KIOSK_HIDE_CURSOR: FALSE
+      KIOSK_FONT_SIZE: 100
+      KIOSK_BACKGROUND_BLUR: TRUE
+      KIOSK_THEME: FADE
+      KIOSK_LAYOUT: single
+      # Sleep mode
+      KIOSK_SLEEP_START: ""
+      KIOSK_SLEEP_END: ""
+      # Transistion options
+      KIOSK_TRANSITION: NONE
+      KIOSK_FADE_TRANSITION_DURATION: 1
+      KIOSK_CROSS_FADE_TRANSITION_DURATION: 1
+      # Image display settings
+      KIOSK_SHOW_PROGRESS: FALSE
+      KIOSK_IMAGE_FIT: CONTAIN
+      KIOSK_IMAGE_ZOOM: FALSE
+      KIOSK_IMAGE_ZOOM_AMOUNT: 120
+      # Image metadata
+      KIOSK_SHOW_IMAGE_TIME: FALSE
+      KIOSK_IMAGE_TIME_FORMAT: 24
+      KIOSK_SHOW_IMAGE_DATE: FALSE
+      KIOSK_IMAGE_DATE_FORMAT: YYYY-MM-DD
+      KIOSK_SHOW_IMAGE_EXIF: FALSE
+      KIOSK_SHOW_IMAGE_LOCATION: FALSE
+      KIOSK_SHOW_IMAGE_ID: FALSE
+      # Kiosk settings
+      KIOSK_PASSWORD: $IMMICH_KIOSK_PASSWORD
+      KIOSK_CACHE: TRUE
+      KIOSK_PREFETCH: TRUE
+      KIOSK_ASSET_WEIGHTING: TRUE
+    networks:
+      - external
+      - internal
+    ports:
+      - 3002:3000
+    restart: unless-stopped
+
 volumes:
   model-cache:
