@@ -115,7 +115,7 @@ services:
       KIOSK_SHOW_IMAGE_LOCATION: FALSE
       KIOSK_SHOW_IMAGE_ID: FALSE
       # Kiosk settings
-      KIOSK_PASSWORD: $IMMICH_KIOSK_PASSWORD
+      KIOSK_PASSWORD:
       KIOSK_CACHE: TRUE
       KIOSK_PREFETCH: TRUE
       KIOSK_ASSET_WEIGHTING: TRUE
@@ -124,6 +124,8 @@ services:
       - internal
     ports:
       - 3002:3000
+    depends_on:
+      - immichserver
     restart: unless-stopped
 
 volumes:
