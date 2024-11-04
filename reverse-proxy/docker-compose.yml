@@ -49,14 +49,14 @@ services:
       - 44301:443
       - 8001:80
 
-  cloudflareddns:
-    image: oznu/cloudflare-ddns:latest
-    networks:
-      - external
-    env_file:
-      - ../stack.env
-    environment:
-      - API_KEY=$API_KEY
-      - ZONE=$DOMAIN
-      - PROXIED=true
-    restart: unless-stopped
+  # cloudflareddns:
+  #   image: oznu/cloudflare-ddns:latest
+  #   networks:
+  #     - external
+  #   env_file:
+  #     - ../stack.env
+  #   environment:
+  #     - API_KEY=$API_KEY
+  #     - ZONE=$DOMAIN
+  #     - PROXIED=true
+  #   restart: unless-stopped
