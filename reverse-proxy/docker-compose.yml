@@ -31,7 +31,7 @@ services:
 #     restart: unless-stopped
 #
   caddy:
-    image: slothcroissant/caddy-cloudflaredns:latest
+    image: ghcr.io/agentgodzilla/caddy-cloudflaredns:latest
     env_file:
       - ../stack.env
     environment:
