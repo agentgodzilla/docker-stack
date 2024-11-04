@@ -5,7 +5,7 @@ networks:
 services:
 
   unboundpihole:
-    image: ghcr.io/milkers69/docker-pihole-unbound:latest
+    image: ghcr.io/agentgodzilla/docker-pihole-unbound:latest
     cap_add:
       - NET_ADMIN
     env_file:
