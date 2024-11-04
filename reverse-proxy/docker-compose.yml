@@ -41,6 +41,7 @@ services:
     volumes:
       - /mnt/user/appdata/reverse-proxy/caddy/data:/data
       - /mnt/user/appdata/reverse-proxy/caddy/config:/config
+      - /mnt/user/appdata/reverse-proxy/caddy/Caddyfile:/etc/caddy/Caddyfile
     networks:
       - external
       - internal
