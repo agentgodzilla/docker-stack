@@ -4,32 +4,50 @@ networks:
   external:
 
 services:
-  swag:
-    image: lscr.io/linuxserver/swag
-    cap_add:
-      - NET_ADMIN
+#   swag:
+#     image: lscr.io/linuxserver/swag
+#     cap_add:
+#       - NET_ADMIN
+#     env_file:
+#       - ../stack.env
+#     environment:
+#       - PUID=99
+#       - PGID=100
+#       - TZ=America/Chicago
+#       - URL=$DOMAIN
+#       - SUBDOMAINS=wildcard
+#       - VALIDATION=dns
+#       - DNSPLUGIN=cloudflare
+#       - DOCKER_MODS=linuxserver/mods:swag-dashboard|linuxserver/mods:swag-auto-reload
+#     volumes:
+#       - /mnt/user/appdata/reverse-proxy/swag:/config
+#     networks:
+#       - external
+#       - internal
+#     ports:
+#       - 44301:443
+#       - 8001:80
+#       - 89:81
+#     restart: unless-stopped
+#
+  caddy:
+    image: slothcroissant/caddy-cloudflaredns:latest
     env_file:
       - ../stack.env
     environment:
-      - PUID=99
-      - PGID=100
-      - TZ=America/Chicago
-      - URL=$DOMAIN
-      - SUBDOMAINS=wildcard
-      - VALIDATION=dns
-      - DNSPLUGIN=cloudflare
-      - DOCKER_MODS=linuxserver/mods:swag-dashboard|linuxserver/mods:swag-auto-reload
+      - CLOUDFLARE_EMAIL=$CLOUDFLARE_EMAIL
+      - CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN
+      - ACME_AGREE=true
     volumes:
-      - /mnt/user/appdata/reverse-proxy/swag:/config
+      - /mnt/user/appdata/reverse-proxy/caddy/data:/data
+      - /mnt/user/appdata/reverse-proxy/caddy/config:/config
     networks:
       - external
       - internal
     ports:
       - 44301:443
       - 8001:80
-      - 89:81
-    restart: unless-stopped
-    
+
   cloudflareddns:
     image: oznu/cloudflare-ddns:latest
     networks:
