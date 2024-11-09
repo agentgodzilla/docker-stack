@@ -8,7 +8,7 @@ services:
     image: rustdesk/rustdesk-server:latest
     command: hbbs
     volumes:
-      - /mnt/user/appdata/rustdesk/hbbs:/root
+      - /mnt/user/appdata/rustdesk/combined:/root
     networks:
       - external
       - internal
@@ -25,7 +25,7 @@ services:
     image: rustdesk/rustdesk-server:latest
     command: hbbr
     volumes:
-      - /mnt/user/appdata/rustdesk/hbbr:/root
+      - /mnt/user/appdata/rustdesk/combined:/root
     networks:
       - external
       - internal
