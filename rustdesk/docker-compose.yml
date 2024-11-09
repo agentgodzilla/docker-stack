@@ -1,0 +1,35 @@
+networks:
+  internal:
+    internal: true
+  external:
+
+services:
+  hbbs:
+    image: rustdesk/rustdesk-server:latest
+    command: hbbs
+    volumes:
+      - /mnt/user/appdata/rustdesk/hbbs:/root
+    networks:
+      - external
+      - internal
+    ports:
+      - 21115:21115
+      - 21116:21116
+      - 21116:21116/udp
+      - 21118:21118
+    depends_on:
+      - hbbr
+    restart: unless-stopped
+
+  hbbr:
+    image: rustdesk/rustdesk-server:latest
+    command: hbbr
+    volumes:
+      - /mnt/user/appdata/rustdesk/hbbr:/root
+    networks:
+      - external
+      - internal
+    ports:
+      - 21117:21117
+      - 21119:21119
+    restart: unless-stopped
