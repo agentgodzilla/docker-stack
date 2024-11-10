@@ -31,7 +31,7 @@ services:
 #     restart: unless-stopped
 #
   caddy:
-    image: ghcr.io/agentgodzilla/caddy-cloudflare:latest
+    image: ghcr.io/agentgodzilla/caddy-cloudflare-dynamicdns:latest
     env_file:
       - ../stack.env
     environment:
