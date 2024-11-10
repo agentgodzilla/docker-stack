@@ -2,7 +2,9 @@ networks:
   internal:
     internal: true
   external:
-  
+  reverse-proxy_internal:
+    external: true
+
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
@@ -32,7 +34,25 @@ services:
       - /mnt/user/media:/data
       - /mnt/user/temp:/transcode
     restart: unless-stopped
-    
+
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    user: 99:100
+    environment:
+      - TZ=America/Chicago
+    networks:
+      - internal
+      - external
+      - reverse-proxy_internal
+    ports:
+      - 13378:80
+    volumes:
+      - /mnt/user/media/Audiobooks:/audiobooks
+      - /mnt/user/media/Podcasts:/podcasts
+      - /mnt/user/appdata/media-streaming/audiobookshelf:/config
+      - /mnt/user/appdata/media-streaming/audiobookshelf/metadata:/metadata
+    restart: unless-stopped
+
   # jellyfin:
   #   image: lscr.io/linuxserver/jellyfin:latest
   #   environment:
