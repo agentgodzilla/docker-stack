@@ -85,7 +85,7 @@ services:
       KIOSK_DISABLE_SCREENSAVER: TRUE
       # Asset sources
       KIOSK_SHOW_ARCHIVED: FALSE
-      KIOSK_ALBUM: "bff87026-9e29-4c7d-b6ae-53c6ff5f78ab,baa70b3a-7e4e-42f2-bc37-6717048ccbb7,41fba02e-4097-4854-9c0f-d0b89b7a0e71"
+      KIOSK_ALBUM: "bff87026-9e29-4c7d-b6ae-53c6ff5f78ab,baa70b3a-7e4e-42f2-bc37-6717048ccbb7,41fba02e-4097-4854-9c0f-d0b89b7a0e71,baa70b3a-7e4e-42f2-bc37-6717048ccbb7"
       KIOSK_PERSON: "f459f375-aa1e-4b91-b428-a1e491a62dcb,330ae4b2-07e4-4141-bf28-f1a23781bb00"
       # UI
       KIOSK_DISABLE_UI: FALSE
