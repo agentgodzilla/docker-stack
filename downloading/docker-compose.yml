@@ -24,9 +24,9 @@ services:
       - PUBLICIP_API=ip2location
       - PUBLICIP_API_TOKEN=$PUBLICIP_API_TOKEN
       - TZ=America/Chicago
-      - HEALTH_VPN_DURATION_INITIAL=16
-      - HEALTH_VPN_DURATION_ADDITION=15
-      - HEALTH_SUCCESS_WAIT_DURATION=15
+      - HEALTH_VPN_DURATION_INITIAL=16s
+      - HEALTH_VPN_DURATION_ADDITION=15s
+      - HEALTH_SUCCESS_WAIT_DURATION=15s
     volumes:
       - /mnt/user/appdata/downloading/gluetun:/gluetun
     networks:
