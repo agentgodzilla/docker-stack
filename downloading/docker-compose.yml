@@ -37,64 +37,64 @@ services:
       - 8081:8081 # sabnzbd
     restart: unless-stopped
     
-#   qbittorrent:
-#     image: lscr.io/linuxserver/qbittorrent:4.6.7
-#     network_mode: service:gluetun
-#     env_file:
-#       - ../stack.env
-#     environment:
-#       - WEBUI_PORT=$QBITTORRENT_WEBUI_PORT
-#       - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
-#       - PUID=99
-#       - PGID=100
-#       - UMASK=000
-#       - TZ=America/Chicago
-#     volumes:
-#       - /mnt/user/appdata/downloading/qbittorrent:/config
-#       - /mnt/user/media/downloads/:/downloads
-#     restart: unless-stopped
-#
-#   portcheck:
-#     image: eiqnepm/portcheck:latest
-#     network_mode: "service:gluetun"
-#     env_file:
-#       - ../stack.env
-#     environment:
-#       - QBITTORRENT_WEBUI_HOST=gluetun
-#       - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
-#       - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
-#       - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
-#     entrypoint: sh -c "sleep 30; /app"
-#     depends_on:
-#       - qbittorrent
-#     restart: unless-stopped
-#
-#   qbit-tagger:
-#     image: ghcr.io/milkers69/qbit-tagger:main
-#     env_file:
-#       - ../stack.env
-#     environment:
-#       - HOST=http://gluetun:$QBITTORRENT_WEBUI_PORT
-#       - TAG=Not Working
-#       - USERNAME=$QBITTORRENT_USERNAME
-#       - PASSWORD=$QBITTORRENT_PASSWORD
-#     entrypoint: sh -c "sleep 30; while true; do python3 /app/app.py; sleep $((60*15)); done"
-#     networks:
-#       - internal
-#     depends_on:
-#       - qbittorrent
-#     restart: unless-stopped
-#
-#   sabnzbd:
-#     image: lscr.io/linuxserver/sabnzbd:latest
-#     network_mode: service:gluetun
-#     environment:
-#       - PUID=99
-#       - PGID=100
-#       - UMASK=000
-#       - TZ=America/Chicago
-#     volumes:
-#       - /mnt/user/media/downloads:/downloads
-#       - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
-#       - /mnt/user/appdata/downloading/sabnzbd:/config
-#     restart: unless-stopped
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:4.6.7
+    network_mode: service:gluetun
+    env_file:
+      - ../stack.env
+    environment:
+      - WEBUI_PORT=$QBITTORRENT_WEBUI_PORT
+      - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/appdata/downloading/qbittorrent:/config
+      - /mnt/user/media/downloads/:/downloads
+    restart: unless-stopped
+
+  # portcheck:
+  #   image: eiqnepm/portcheck:latest
+  #   network_mode: "service:gluetun"
+  #   env_file:
+  #     - ../stack.env
+  #   environment:
+  #     - QBITTORRENT_WEBUI_HOST=gluetun
+  #     - QBITTORRENT_PORT=$FIREWALL_VPN_INPUT_PORTS
+  #     - QBITTORRENT_USERNAME=$QBITTORRENT_USERNAME
+  #     - QBITTORRENT_PASSWORD=$QBITTORRENT_PASSWORD
+  #   entrypoint: sh -c "sleep 30; /app"
+  #   depends_on:
+  #     - qbittorrent
+  #   restart: unless-stopped
+
+  qbit-tagger:
+    image: ghcr.io/milkers69/qbit-tagger:main
+    env_file:
+      - ../stack.env
+    environment:
+      - HOST=http://gluetun:$QBITTORRENT_WEBUI_PORT
+      - TAG=Not Working
+      - USERNAME=$QBITTORRENT_USERNAME
+      - PASSWORD=$QBITTORRENT_PASSWORD
+    entrypoint: sh -c "sleep 30; while true; do python3 /app/app.py; sleep $((60*15)); done"
+    networks:
+      - internal
+    depends_on:
+      - qbittorrent
+    restart: unless-stopped
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    network_mode: service:gluetun
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/media/downloads:/downloads
+      - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
+      - /mnt/user/appdata/downloading/sabnzbd:/config
+    restart: unless-stopped
