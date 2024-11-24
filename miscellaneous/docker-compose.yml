@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
 
   speedtest:
-    image: openspeedtest:latest
+    image: openspeedtest/latest:latest
     networks:
       - external
     ports:
