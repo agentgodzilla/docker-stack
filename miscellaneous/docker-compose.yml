@@ -66,3 +66,13 @@ services:
       - 7805:5800
       - 7905:5900
     restart: unless-stopped
+
+  speedtest:
+    image: openspeedtest:latest
+    networks:
+      - external
+    ports:
+        - '3003:3000'
+        - '3004:3001'
+    restart: unless-stopped
+
