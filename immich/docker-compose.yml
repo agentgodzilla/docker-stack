@@ -74,7 +74,7 @@ services:
       TZ: "America/Chicago"
       # Required settings
       KIOSK_IMMICH_API_KEY: $IMMICH_API_TOKEN
-      KIOSK_IMMICH_URL: immichserver:2283
+      KIOSK_IMMICH_URL: "immichserver:2283"
       # Clock
       KIOSK_SHOW_TIME: true
       KIOSK_TIME_FORMAT: 12
@@ -106,8 +106,8 @@ services:
       KIOSK_CROSS_FADE_TRANSITION_DURATION: 1
       # Image display settings
       KIOSK_SHOW_PROGRESS: false
-      KIOSK_IMAGE_FIT: contain
-      KIOSK_IMAGE_EFFECT: smart-zoom
+      KIOSK_IMAGE_FIT: "contain"
+      KIOSK_IMAGE_EFFECT: ""
       KIOSK_IMAGE_ZOOM_AMOUNT: 120
       KIOSK_USE_ORIGINAL_IMAGE: false
       # Image metadata
