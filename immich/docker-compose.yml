@@ -134,6 +134,7 @@ services:
       KIOSK_PREFETCH: true
       KIOSK_ASSET_WEIGHTING: true
       KIOSK_PORT: 3000
+    networks:
       - internal
     depends_on:
       - immichserver
