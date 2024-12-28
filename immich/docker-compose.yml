@@ -220,9 +220,14 @@ services:
       - /mnt/user/appdata/immich/caddy/config:/config
       - /mnt/user/appdata/immich/caddy/Caddyfile:/etc/caddy/Caddyfile
     networks:
+      - internal
       - external
     ports:
       - 3002:80
+    depends_on:
+      - immich-kiosk-people
+      - immich-kiosk-animals
+    restart: unless-stopped
 
 volumes:
   model-cache:
