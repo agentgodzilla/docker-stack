@@ -66,7 +66,7 @@ services:
       interval: 5m
     restart: unless-stopped
 
-  immich-kiosk:
+  immich-kiosk-people:
     image: damongolding/immich-kiosk:latest
     env_file:
       - ../stack.env
@@ -86,9 +86,82 @@ services:
       KIOSK_OPTIMIZE_IMAGES: false
       # Asset sources
       KIOSK_SHOW_ARCHIVED: false
-      KIOSK_ALBUM: "bff87026-9e29-4c7d-b6ae-53c6ff5f78ab,baa70b3a-7e4e-42f2-bc37-6717048ccbb7,41fba02e-4097-4854-9c0f-d0b89b7a0e71,baa70b3a-7e4e-42f2-bc37-6717048ccbb7"
+      KIOSK_ALBUM: "bff87026-9e29-4c7d-b6ae-53c6ff5f78ab,baa70b3a-7e4e-42f2-bc37-6717048ccbb7,41fba02e-4097-4854-9c0f-d0b89b7a0e71"
       KIOSK_EXCLUDED_ALBUMS: "acc4b483-6605-4de1-91eb-54e9cc1654cc,ab956080-ee3e-4ee2-a071-7d104002b798"
       KIOSK_PERSON: "f459f375-aa1e-4b91-b428-a1e491a62dcb,330ae4b2-07e4-4141-bf28-f1a23781bb00"
+      # UI
+      KIOSK_DISABLE_UI: false
+      KIOSK_FRAMELESS: false
+      KIOSK_HIDE_CURSOR: false
+      KIOSK_FONT_SIZE: 100
+      KIOSK_BACKGROUND_BLUR: true
+      KIOSK_THEME: fade
+      KIOSK_LAYOUT: single
+      # Sleep mode
+      KIOSK_SLEEP_START: ""
+      KIOSK_SLEEP_END: ""
+      # Transistion options
+      KIOSK_TRANSITION: NONE
+      KIOSK_FADE_TRANSITION_DURATION: 1
+      KIOSK_CROSS_FADE_TRANSITION_DURATION: 1
+      # Image display settings
+      KIOSK_SHOW_PROGRESS: false
+      KIOSK_IMAGE_FIT: "contain"
+      KIOSK_IMAGE_EFFECT: "smart-zoom"
+      KIOSK_IMAGE_ZOOM_AMOUNT: 120
+      KIOSK_USE_ORIGINAL_IMAGE: false
+      # Image metadata
+      KIOSK_SHOW_ALBUM_NAME: false
+      KIOSK_SHOW_PERSON_NAME: false
+      KIOSK_SHOW_IMAGE_TIME: false
+      KIOSK_IMAGE_TIME_FORMAT: 24
+      KIOSK_SHOW_IMAGE_DATE: false
+      KIOSK_IMAGE_DATE_FORMAT: YYYY-MM-DD
+      KIOSK_SHOW_IMAGE_DESCRIPTION: false
+      KIOSK_SHOW_IMAGE_EXIF: false
+      KIOSK_SHOW_IMAGE_LOCATION: false
+      KIOSK_HIDE_COUNTRIES: ""
+      KIOSK_SHOW_IMAGE_ID: false
+      KIOSK_SHOW_MORE_INFO: true
+      KIOSK_SHOW_MORE_INFO_IMAGE_LINK: true
+      KIOSK_SHOW_MORE_INFO_QR_CODE: true
+      # Kiosk settings
+      KIOSK_WATCH_CONFIG: false
+      KIOSK_FETCHED_ASSETS_SIZE: 1000
+      KIOSK_HTTP_TIMEOUT: 20
+      KIOSK_PASSWORD: ""
+      KIOSK_CACHE: true
+      KIOSK_PREFETCH: true
+      KIOSK_ASSET_WEIGHTING: true
+      KIOSK_PORT: 3000
+      - internal
+    depends_on:
+      - immichserver
+    restart: unless-stopped
+
+  immich-kiosk-animals:
+    image: damongolding/immich-kiosk:latest
+    env_file:
+      - ../stack.env
+    environment:
+      TZ: "America/Chicago"
+      # Required settings
+      KIOSK_IMMICH_API_KEY: $IMMICH_API_TOKEN
+      KIOSK_IMMICH_URL: "immichserver:2283"
+      # Clock
+      KIOSK_SHOW_TIME: true
+      KIOSK_TIME_FORMAT: 12
+      KIOSK_SHOW_DATE: true
+      KIOSK_DATE_FORMAT: "DDDD MMMM DD YYYY"
+      # Kiosk behaviour
+      KIOSK_REFRESH: 60
+      KIOSK_DISABLE_SCREENSAVER: true
+      KIOSK_OPTIMIZE_IMAGES: false
+      # Asset sources
+      KIOSK_SHOW_ARCHIVED: false
+      KIOSK_ALBUM: "baa70b3a-7e4e-42f2-bc37-6717048ccbb7"
+      KIOSK_EXCLUDED_ALBUMS: ""
+      KIOSK_PERSON: ""
       # UI
       KIOSK_DISABLE_UI: false
       KIOSK_FRAMELESS: false
@@ -135,13 +208,21 @@ services:
       KIOSK_ASSET_WEIGHTING: true
       KIOSK_PORT: 3000
     networks:
-      - external
       - internal
-    ports:
-      - 3002:3000
     depends_on:
       - immichserver
     restart: unless-stopped
+
+  immich-kiosk-lb:
+    image: ghcr.io/agentgodzilla/caddy-cloudflare-dynamicdns:latest
+    volumes:
+      - /mnt/user/appdata/immich/caddy/data:/data
+      - /mnt/user/appdata/immich/caddy/config:/config
+      - /mnt/user/appdata/immich/caddy/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - external
+    ports:
+      - 3002:80
 
 volumes:
   model-cache:
