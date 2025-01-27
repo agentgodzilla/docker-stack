@@ -16,7 +16,7 @@ services:
       - INTERFACE=eth0
       - IPv6=False
       - DNSMASQ_LISTENING=all
-      - TZ=America/Chicago
+      #- TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/pihole/pihole-dot-doh/pihole:/etc/pihole
       - /mnt/user/appdata/pihole/pihole-dot-doh/dnsmasq.d:/etc/dnsmasq.d
