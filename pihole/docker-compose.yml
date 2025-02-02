@@ -3,31 +3,55 @@ networks:
     external: true
     
 services:
-
-  unboundpihole:
-    image: ghcr.io/agentgodzilla/docker-pihole-unbound:latest
-    cap_add:
-      - NET_ADMIN
+  adguard:
+    image: adguard/adguardhome
     env_file:
       - ../stack.env
-    environment:
-      - WEBPASSWORD=$WEBPASSWORD
-      - ServerIP=$IP_ADDRESS
-      - INTERFACE=eth0
-      - IPv6=False
-      - DNSMASQ_LISTENING=all
-      - TZ=America/Chicago
     volumes:
-      - /mnt/user/appdata/pihole/pihole-dot-doh/pihole:/etc/pihole
-      - /mnt/user/appdata/pihole/pihole-dot-doh/dnsmasq.d:/etc/dnsmasq.d
-      - /mnt/user/appdata/pihole/pihole-dot-doh/config:/config
+      - /mnt/user/appdata/pihole/adguard/workdir:/opt/adguardhome/work
+      - /mnt/user/appdata/pihole/adguard/confdir:/opt/adguardhome/conf
     networks:
       br0:
         ipv4_address: $IP_ADDRESS
     ports:
-      - 443:443
-      - 53:53
+      - 53:53/tcp
       - 53:53/udp
-      - 67:67/udp 
-      - 80:80
+      - 67:67/udp
+      - 68:68/udp
+      - 80:80/tcp
+      - 443:443/tcp
+      - 443:443/udp
+      - 3000:3000/tcp
+      - 853:853/tcp
+      - 853:853/udp
+      - 5443:5443/tcp
+      - 5443:5443/udp
+      - 6060:6060/tcp
     restart: unless-stopped
+  # unboundpihole:
+  #   image: ghcr.io/agentgodzilla/docker-pihole-unbound:latest
+  #   cap_add:
+  #     - NET_ADMIN
+  #   env_file:
+  #     - ../stack.env
+  #   environment:
+  #     - WEBPASSWORD=$WEBPASSWORD
+  #     - ServerIP=$IP_ADDRESS
+  #     - INTERFACE=eth0
+  #     - IPv6=False
+  #     - DNSMASQ_LISTENING=all
+  #     - TZ=America/Chicago
+  #   volumes:
+  #     - /mnt/user/appdata/pihole/pihole-dot-doh/pihole:/etc/pihole
+  #     - /mnt/user/appdata/pihole/pihole-dot-doh/dnsmasq.d:/etc/dnsmasq.d
+  #     - /mnt/user/appdata/pihole/pihole-dot-doh/config:/config
+  #   networks:
+  #     br0:
+  #       ipv4_address: $IP_ADDRESS
+  #   ports:
+  #     - 443:443
+  #     - 53:53
+  #     - 53:53/udp
+  #     - 67:67/udp 
+  #     - 80:80
+  #   restart: unless-stopped
