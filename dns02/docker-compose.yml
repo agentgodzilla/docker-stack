@@ -34,13 +34,13 @@ services:
     env_file:
       - ../stack.env
     environment:
-      LOG_LEVEL="info"
-      ORIGIN_URL="http://192.168.0.4"
-      ORIGIN_USERNAME=$ORIGIN_USERNAME
-      ORIGIN_PASSWORD=$ORIGIN_PASSWORD
-      REPLICA1_URL="http://adguard"
-      REPLICA1_USERNAME=$REPLICA_USERNAME
-      REPLICA1_PASSWORD=$REPLICA_PASSWORD
-      CRON="0 0 1 * *" # “At 00:00 on day-of-month 1.” 
-      RUN_ON_START="true"
+      - LOG_LEVEL="info"
+      - ORIGIN_URL="http://192.168.0.4"
+      - ORIGIN_USERNAME=$ORIGIN_USERNAME
+      - ORIGIN_PASSWORD=$ORIGIN_PASSWORD
+      - REPLICA1_URL="http://adguard"
+      - REPLICA1_USERNAME=$REPLICA_USERNAME
+      - REPLICA1_PASSWORD=$REPLICA_PASSWORD
+      - CRON="0 0 1 * *" # “At 00:00 on day-of-month 1.” 
+      - RUN_ON_START="true"
     restart: unless-stopped
