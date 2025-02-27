@@ -30,7 +30,7 @@ services:
 
   adguardhome-sync:
     image: ghcr.io/bakito/adguardhome-sync:latest
-    command: run
+    command: sleep 30; run
     env_file:
       - ../stack.env
     environment:
