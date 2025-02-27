@@ -1,0 +1,46 @@
+networks:
+  internal:
+    internal: true
+  external:
+
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    volumes:
+      - /app/adguard/workdir:/opt/adguardhome/work
+      - /app/adguard/confdir:/opt/adguardhome/conf
+    networks:
+      - internal
+      - external
+    ports:
+      - 53:53
+      - 53:53/udp
+     # - 67:67/udp
+     # - 68:68/udp
+      - 80:80
+      - 443:443
+      - 443:443/udp
+      - 3000:3000
+     #- 853:853
+     # - 853:853/udp
+     # - 5443:5443
+     # - 5443:5443/udp
+      - 6060:6060/tcp
+    restart: unless-stopped
+
+  adguardhome-sync:
+    image: ghcr.io/bakito/adguardhome-sync:latest
+    command: run
+    env_file:
+      - ../stack.env
+    environment:
+      LOG_LEVEL="info"
+      ORIGIN_URL="http://192.168.0.4"
+      ORIGIN_USERNAME=$ORIGIN_USERNAME
+      ORIGIN_PASSWORD=$ORIGIN_PASSWORD
+      REPLICA1_URL="http://adguard"
+      REPLICA1_USERNAME=$REPLICA_USERNAME
+      REPLICA1_PASSWORD=$REPLICA_PASSWORD
+      CRON="0 0 1 * *" # “At 00:00 on day-of-month 1.” 
+      RUN_ON_START="true"
+    restart: unless-stopped
