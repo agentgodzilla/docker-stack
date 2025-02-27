@@ -35,7 +35,7 @@ services:
       - ../stack.env
     environment:
       - LOG_LEVEL=info
-      - ORIGIN_URL=http://192.168.0.4
+      - ORIGIN_URL=$ORIGIN_URL
       - ORIGIN_USERNAME=$ORIGIN_USERNAME
       - ORIGIN_PASSWORD=$ORIGIN_PASSWORD
       - REPLICA1_URL=http://adguard
