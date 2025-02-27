@@ -43,4 +43,7 @@ services:
       - REPLICA1_PASSWORD=$REPLICA_PASSWORD
       - CRON=0 0 1 * * # “At 00:00 on day-of-month 1.” 
       - RUN_ON_START=true
+    networks:
+      - internal
+      - external
     restart: unless-stopped
