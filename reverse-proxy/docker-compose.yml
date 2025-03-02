@@ -48,7 +48,8 @@ services:
     ports:
       - 44301:443
       - 8001:80
-
+    restart: unless-stopped
+    
   # cloudflareddns:
   #   image: oznu/cloudflare-ddns:latest
   #   networks:
