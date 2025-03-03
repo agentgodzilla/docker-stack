@@ -67,7 +67,7 @@ services:
     restart: unless-stopped
 
   immich-kiosk-people:
-    image: damongolding/immich-kiosk:latest
+    image: ghcr.io/damongolding/immich-kiosk:latest
     env_file:
       - ../stack.env
     environment:
@@ -141,7 +141,7 @@ services:
     restart: unless-stopped
 
   immich-kiosk-animals:
-    image: damongolding/immich-kiosk:latest
+    image: ghcr.io/damongolding/immich-kiosk:latest
     env_file:
       - ../stack.env
     environment:
