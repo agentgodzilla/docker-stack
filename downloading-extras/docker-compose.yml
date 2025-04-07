@@ -35,6 +35,9 @@ services:
       - TZ=America/Chicago
     volumes:
       -  /mnt/user/appdata/downloading-extras/prowlarr:/config
+    networks:
+      - internal
+      - external
     ports:
       - 9696:9696
     restart: unless-stopped
