@@ -38,6 +38,7 @@ services:
     networks:
       - internal
       - external
+      - downloading_internal
     ports:
       - 9696:9696
     depends_on:
