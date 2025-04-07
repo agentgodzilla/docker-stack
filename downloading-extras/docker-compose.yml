@@ -25,6 +25,19 @@ services:
     depends_on:
       - flaresolverr
     restart: unless-stopped
+ 
+   prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    environment:
+      - PUID=99
+      - PGID=100
+      - UMASK=000
+      - TZ=America/Chicago
+    volumes:
+      -  /mnt/user/appdata/downloading-extras/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
     
   crossseed:
     image: ghcr.io/cross-seed/cross-seed:6
