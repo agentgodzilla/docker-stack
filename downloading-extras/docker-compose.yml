@@ -70,6 +70,7 @@ services:
       - TZ=America/Chicago
     networks:
       - internal
+      - external
     ports:
       - 8191:8191
     restart: unless-stopped
