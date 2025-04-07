@@ -40,6 +40,8 @@ services:
       - external
     ports:
       - 9696:9696
+    depends_on:
+      - flaresolverr
     restart: unless-stopped
     
   crossseed:
@@ -56,7 +58,8 @@ services:
     ports:
       - 2468:2468
     depends_on:
-      - jackett
+      # - jackett
+      - prowlarr
       - sonarr
       - radarr
     restart: unless-stopped
@@ -92,7 +95,8 @@ services:
     ports:
       - 8989:8989
     depends_on:
-      - jackett
+      # - jackett
+      - prowlarr
     restart: unless-stopped
     
   radarr:
@@ -112,7 +116,8 @@ services:
     ports:
       - 7878:7878
     depends_on:
-      - jackett
+      # - jackett
+      - prowlarr
     restart: unless-stopped
 
   lidarr:
@@ -132,7 +137,8 @@ services:
     ports:
       - 8686:8686
     depends_on:
-      - jackett
+      # - jackett
+      - prowlarr
     restart: unless-stopped
 
   readarr:
@@ -152,7 +158,8 @@ services:
     ports:
       - 8787:8787
     depends_on:
-      - jackett
+      # - jackett
+      - prowlarr
     restart: unless-stopped
 
   readarraudiobooks:
@@ -172,5 +179,6 @@ services:
     ports:
       - 8788:8787
     depends_on:
-      - jackett
+      # - jackett
+      - prowlarr
     restart: unless-stopped
