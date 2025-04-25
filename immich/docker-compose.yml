@@ -39,8 +39,8 @@ services:
       - internal
     restart: unless-stopped
 
-  redis:
-    image: docker.io/redis:6.2-alpine
+  valkey:
+    image: docker.io/valkey/valkey:8-bookworm
     healthcheck:
       test: redis-cli ping || exit 1
     networks:
