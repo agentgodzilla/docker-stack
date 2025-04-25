@@ -27,7 +27,7 @@ services:
     ports:
       - 2283:2283
     depends_on:
-      - redis
+      - valkey
       - postgres
     restart: unless-stopped
 
