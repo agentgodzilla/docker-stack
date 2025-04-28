@@ -34,6 +34,8 @@ services:
 
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:release
+    environment:
+      - REDIS_HOSTNAME=valkey
     volumes:
       - model-cache:/cache
     networks:
