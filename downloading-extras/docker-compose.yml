@@ -51,7 +51,6 @@ services:
     command: daemon
     volumes:
       - /mnt/user/appdata/downloading-extras/cross-seed:/config
-      - /mnt/user/appdata/downloading/qbittorrent/qBittorrent/BT_backup:/torrents
       - /mnt/user/media/downloads:/downloads
     networks:
       - internal
