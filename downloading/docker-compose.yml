@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:5.0.4-libtorrentv1
+    image: lscr.io/linuxserver/qbittorrent:5.0.5-libtorrentv1
     network_mode: service:gluetun
     env_file:
       - ../stack.env
