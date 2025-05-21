@@ -234,7 +234,6 @@ services:
     
   ntp:
     image: cturra/ntp:latest
-    restart: always
     networks:
       - external
     ports:
