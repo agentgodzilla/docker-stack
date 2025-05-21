@@ -231,10 +231,8 @@ services:
     depends_on:
       - immich-kiosk-people
       - immich-kiosk-animals
-    restart: unless-stopped
-
+    
   ntp:
-    build: .
     image: cturra/ntp:latest
     restart: always
     networks:
@@ -246,6 +244,7 @@ services:
       - LOG_LEVEL=0
       - TZ=America/Chicago
       - ENABLE_NTS=true
-      
+    restart: unless-stopped
+
 volumes:
   model-cache:
