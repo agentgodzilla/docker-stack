@@ -233,5 +233,19 @@ services:
       - immich-kiosk-animals
     restart: unless-stopped
 
+  ntp:
+    build: .
+    image: cturra/ntp:latest
+    restart: always
+    networks:
+      - external
+    ports:
+      - 123:123/udp
+    environment:
+      - NTP_SERVERS=time.cloudflare.com
+      - LOG_LEVEL=0
+      - TZ=America/Chicago
+      - ENABLE_NTS=true
+      
 volumes:
   model-cache:
