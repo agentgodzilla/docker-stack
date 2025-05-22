@@ -51,8 +51,7 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0
-    command: ["postgres", "-c" ,"shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
     env_file:
       - ../stack.env
     environment:
@@ -64,9 +63,6 @@ services:
       - /mnt/user/appdata/immich/postgresql:/var/lib/postgresql/data
     networks:
       - internal
-    healthcheck:
-      test: pg_isready --dbname='immich' --username='$DB_USERNAME' || exit 1; Chksum="$$(psql --dbname='immich' --username='$DB_USERNAME' --tuples-only --no-align --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')"; echo "checksum failure count is $$Chksum"; [ "$$Chksum" = '0' ] || exit 1
-      interval: 5m
     restart: unless-stopped
 
   immich-kiosk-people:
