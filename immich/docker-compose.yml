@@ -107,6 +107,7 @@ services:
       # Transistion options
       # Image display settings
       KIOSK_IMAGE_EFFECT: smart-zoom
+      KIOSK_USE_ORIGINAL_IMAGE: true
       # Image metadata
       # More info actions
       # Kiosk settings
@@ -140,6 +141,7 @@ services:
       # Sleep mode
       # Transistion options
       # Image display settings
+      KIOSK_USE_ORIGINAL_IMAGE: true
       # Image metadata
       # More info actions
       # Kiosk settings
