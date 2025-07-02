@@ -142,7 +142,7 @@ services:
     restart: unless-stopped
 
   readarr:
-    image: lscr.io/linuxserver/readarr:develop
+    image: lscr.io/linuxserver/readarr:0.4.19-nightly
     environment:
       - PUID=99
       - PGID=100
@@ -163,7 +163,7 @@ services:
     restart: unless-stopped
 
   readarraudiobooks:
-    image: lscr.io/linuxserver/readarr:develop
+    image: lscr.io/linuxserver/readarr:0.4.19-nightly
     environment:
       - PUID=99
       - PGID=100
