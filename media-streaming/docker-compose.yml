@@ -36,7 +36,7 @@ services:
     restart: unless-stopped
 
   audiobookshelf:
-    image: ghcr.io/advplyr/audiobookshelf:2.27.0
+    image: ghcr.io/advplyr/audiobookshelf:latest
     user: 99:100
     environment:
       - TZ=America/Chicago
