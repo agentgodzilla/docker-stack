@@ -8,6 +8,7 @@ networks:
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
+    entrypoint: 'rm -rf "/config/Library/Application Support/Plex Media Server/Codecs/EasyAudio*" && /init'
     environment:
       - VERSION=docker
       - PUID=99
