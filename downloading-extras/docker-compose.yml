@@ -141,6 +141,16 @@ services:
       - prowlarr
     restart: unless-stopped
 
+  lidarr-cache-warmer:
+    image: ghcr.io/devianteng/lidarr-cache-warmer:latest
+     volumes:
+      - /mnt/user/appdata/downloading-extras/lidarr-cache-warmer:/app/data
+    networks:
+      - internal
+    depends_on:
+      - lidarr
+    restart: unless-stopped
+      
   readarr:
     image: lscr.io/linuxserver/readarr:0.4.19-nightly
     environment:
