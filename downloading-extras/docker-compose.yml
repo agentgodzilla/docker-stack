@@ -147,6 +147,7 @@ services:
       - /mnt/user/appdata/downloading-extras/lidarr-cache-warmer:/app/data
     networks:
       - internal
+      - external
     depends_on:
       - lidarr
     restart: unless-stopped
