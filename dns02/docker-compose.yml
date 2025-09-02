@@ -27,7 +27,14 @@ services:
      # - 5443:5443/udp
       - 6060:6060/tcp
     restart: unless-stopped
-
+    healthcheck:
+      test: nslookup blackbeard.local 127.0.0.1 > /dev/null
+      start_period: 30s
+      start_interval: 3s
+      interval: 15s
+      timeout: 15s
+      retries: 1
+      
   adguardhome-sync:
     image: ghcr.io/bakito/adguardhome-sync:latest
     command: run
@@ -48,5 +55,6 @@ services:
       - internal
       - external
     depends_on:
-      - adguard
+      adguard:
+          condition: service_healthy          
     restart: unless-stopped
