@@ -54,6 +54,19 @@ services:
       - /mnt/user/media/downloads/:/downloads
     restart: unless-stopped
 
+  qui:
+    image: ghcr.io/autobrr/qui:latest
+    ports:
+      - 7476:7476
+    volumes:
+      -  /mnt/user/appdata/downloading/qui:/config
+    networks:
+      - internal
+      - external
+    depends_on:
+      - qbittorrent
+    restart: unless-stopped
+    
   # portcheck:
   #   image: eiqnepm/portcheck:latest
   #   network_mode: "service:gluetun"
