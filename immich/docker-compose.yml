@@ -54,7 +54,7 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     env_file:
       - ../stack.env
     environment:
@@ -66,6 +66,7 @@ services:
       - /mnt/user/appdata/immich/postgresql:/var/lib/postgresql/data
     networks:
       - internal
+    shm_size: 128mb
     restart: unless-stopped
 
   immich-kiosk-lb:
