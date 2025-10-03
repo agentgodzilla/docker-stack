@@ -33,7 +33,7 @@ services:
       - internal
       - external
     ports:
-      - $QBITTORRENT_WEBUI_PORT:$QBITTORRENT_WEBUI_PORT # qbit
+      - 8080:8080 # qbit
       - 8081:8081 # sabnzbd
     restart: unless-stopped
     
@@ -43,7 +43,7 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - WEBUI_PORT=$QBITTORRENT_WEBUI_PORT
+      - WEBUI_PORT=8080
       - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
       - PUID=99
       - PGID=100
@@ -87,7 +87,7 @@ services:
     env_file:
       - ../stack.env
     environment:
-      - HOST=http://gluetun:$QBITTORRENT_WEBUI_PORT
+      - HOST=http://gluetun:8080
       - TAG=Not Working
       - USERNAME=$QBITTORRENT_USERNAME
       - PASSWORD=$QBITTORRENT_PASSWORD
