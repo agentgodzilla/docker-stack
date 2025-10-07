@@ -116,9 +116,6 @@ services:
       KIOSK_BEHIND_PROXY: true
     networks:
       - internal
-      - external
-    ports:
-      - 3000:3000
     depends_on:
       - immich-kiosk-lb
     healthcheck:
