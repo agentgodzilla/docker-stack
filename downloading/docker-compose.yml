@@ -82,21 +82,21 @@ services:
   #     - qbittorrent
   #   restart: unless-stopped
 
-  qbit-tagger:
-    image: ghcr.io/milkers69/qbit-tagger:main
-    env_file:
-      - ../stack.env
-    environment:
-      - HOST=http://gluetun:8080
-      - TAG=Not Working
-      - USERNAME=$QBITTORRENT_USERNAME
-      - PASSWORD=$QBITTORRENT_PASSWORD
-    entrypoint: sh -c "sleep 90; while true; do python3 /app/app.py; sleep $((60*15)); done"
-    networks:
-      - internal
-    depends_on:
-      - qbittorrent
-    restart: unless-stopped
+  # qbit-tagger:
+  #   image: ghcr.io/milkers69/qbit-tagger:main
+  #   env_file:
+  #     - ../stack.env
+  #   environment:
+  #     - HOST=http://gluetun:8080
+  #     - TAG=Not Working
+  #     - USERNAME=$QBITTORRENT_USERNAME
+  #     - PASSWORD=$QBITTORRENT_PASSWORD
+  #   entrypoint: sh -c "sleep 90; while true; do python3 /app/app.py; sleep $((60*15)); done"
+  #   networks:
+  #     - internal
+  #   depends_on:
+  #     - qbittorrent
+  #   restart: unless-stopped
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
