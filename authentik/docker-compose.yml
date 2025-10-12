@@ -43,13 +43,13 @@ services:
       - /mnt/user/appdata/authentik/server/media:/media
       - /mnt/user/appdata/authentik/server/certs:/certs
       - /mnt/user/appdata/authentik/server/templates:/templates
-   environment:
-      AUTHENTIK_POSTGRESQL__HOST: postgres
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__USER: $POSTGRES_USER
-      AUTHENTIK_POSTGRESQL__PASSWORD: $POSTGRES_PASSWORD
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_SECRET_KEY: $AUTHENTIK_SECRET_KEY
+    environment:
+        AUTHENTIK_POSTGRESQL__HOST: postgres
+        AUTHENTIK_POSTGRESQL__NAME: authentik
+        AUTHENTIK_POSTGRESQL__USER: $POSTGRES_USER
+        AUTHENTIK_POSTGRESQL__PASSWORD: $POSTGRES_PASSWORD
+        AUTHENTIK_REDIS__HOST: redis
+        AUTHENTIK_SECRET_KEY: $AUTHENTIK_SECRET_KEY
     networks:
       - internal
       - external
