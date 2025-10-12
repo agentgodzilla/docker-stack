@@ -2,7 +2,9 @@ networks:
   internal:
     internal: true
   external:
-
+  downloading_internal:
+    external: true
+    
 services:
   server:
     image: ghcr.io/goauthentik/server:2025.8
@@ -22,6 +24,7 @@ services:
     networks:
       - internal
       - external
+      - downloading_internal
     ports:
       - 9069:9000
       - 9443:9443
@@ -52,6 +55,7 @@ services:
         AUTHENTIK_SECRET_KEY: $AUTHENTIK_SECRET_KEY
     networks:
       - internal
+      - downloading_internal
     depends_on:
       postgres:
         condition: service_healthy
