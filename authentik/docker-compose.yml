@@ -1,0 +1,104 @@
+networks:
+  internal:
+    internal: true
+  external:
+
+services:
+  server:
+    image: ghcr.io/goauthentik/server:2025.8
+    command: server
+    env_file:
+      - ../stack.env
+    volumes:
+      - /mnt/user/appdata/authentik/server/media:/media
+      - /mnt/user/appdata/authentik/server/templates:/templates
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: $POSTGRES_USER
+      AUTHENTIK_POSTGRESQL__PASSWORD: $POSTGRES_PASSWORD
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_SECRET_KEY: $AUTHENTIK_SECRET_KEY
+    networks:
+      - internal
+      - external
+    ports:
+      - 9000:9000
+      - 9443:9443
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    image: ghcr.io/goauthentik/server:2025.8
+    command: worker
+    user: root
+    env_file:
+      - ../stack.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/user/appdata/authentik/server/media:/media
+      - /mnt/user/appdata/authentik/server/certs:/certs
+      - /mnt/user/appdata/authentik/server/templates:/templates
+   environment:
+      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: $POSTGRES_USER
+      AUTHENTIK_POSTGRESQL__PASSWORD: $POSTGRES_PASSWORD
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_SECRET_KEY: $AUTHENTIK_SECRET_KEY
+    networks:
+      - internal
+      - external
+    ports:
+      - 9000:9000
+      - 9443:9443
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: docker.io/library/postgres:16
+    env_file:
+      - ../stack.env
+    volumes:
+    - /mnt/user/appdata/authentik/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: authentik
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    networks:
+      - internal
+    healthcheck:
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      test:
+      - CMD-SHELL
+      - pg_isready -d authentik -U $${POSTGRES_USER}
+      timeout: 5s
+    restart: unless-stopped
+
+  redis:
+    image: docker.io/library/redis:alpine
+    command: --save 60 1 --loglevel warning
+    volumes:
+      - /mnt/user/appdata/authentik/redis:/data
+    networks:
+      - internal
+    healthcheck:
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      test:
+      - CMD-SHELL
+      - redis-cli ping | grep PONG
+      timeout: 3s
+    restart: unless-stopped
+    
