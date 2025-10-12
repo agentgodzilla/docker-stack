@@ -23,7 +23,7 @@ services:
       - internal
       - external
     ports:
-      - 9069:9000
+      - 9000:9000
       - 9443:9443
     depends_on:
       postgres:
@@ -52,10 +52,6 @@ services:
         AUTHENTIK_SECRET_KEY: $AUTHENTIK_SECRET_KEY
     networks:
       - internal
-      - external
-    ports:
-      - 9000:9000
-      - 9443:9443
     depends_on:
       postgres:
         condition: service_healthy
