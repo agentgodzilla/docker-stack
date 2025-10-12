@@ -4,3 +4,7 @@ updates:
     directory: "/downloading" 
     schedule:
       interval: "weekly"
+  - package-ecosystem: "docker-compose"
+    directory: "/authentik" 
+    schedule:
+      interval: "weekly"
