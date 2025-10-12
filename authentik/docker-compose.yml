@@ -23,7 +23,7 @@ services:
       - internal
       - external
     ports:
-      - 9000:9000
+      - 9069:9000
       - 9443:9443
     depends_on:
       postgres:
