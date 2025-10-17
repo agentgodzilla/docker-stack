@@ -73,6 +73,7 @@ services:
     networks:
       - internal
       - external
+      - downloading_internal
     ports:
       - 8256:8256
     restart: unless-stopped
