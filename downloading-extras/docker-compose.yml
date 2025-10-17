@@ -63,7 +63,20 @@ services:
       - sonarr
       - radarr
     restart: unless-stopped
-
+    
+  nemorosa:
+    image: ghcr.io/kyokomiki/nemorosa:latest
+    user: 99:100
+    command: "--server"
+    volumes:
+      - /mnt/user/appdata/downloading-extras:/app/data
+     networks:
+      - internal
+      - external
+    ports:
+      - 8256:8256
+    restart: unless-stopped
+      
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     environment:
