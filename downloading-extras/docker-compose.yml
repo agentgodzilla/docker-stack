@@ -83,6 +83,8 @@ services:
     image: ghcr.io/kyokomiki/nemorosa:latest
     user: 99:100
     command: "--server"
+    environment:
+      - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/downloading-extras:/app/data
     networks:
