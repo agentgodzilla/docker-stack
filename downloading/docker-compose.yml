@@ -23,6 +23,9 @@ services:
       - DNS_KEEP_NAMESERVER=on
       - PUBLICIP_API=ip2location
       - PUBLICIP_API_TOKEN=$PUBLICIP_API_TOKEN
+      - HEALTH_VPN_DURATION_INITIAL=16s
+      - HEALTH_VPN_DURATION_ADDITION=15s
+      - HEALTH_SUCCESS_WAIT_DURATION=15s
       - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/downloading/gluetun:/gluetun
