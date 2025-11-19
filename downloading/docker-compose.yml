@@ -10,6 +10,8 @@ services:
       - NET_ADMIN
     env_file:
       - ../stack.env
+    devices:
+      - /dev/net/tun:/dev/net/tun
     environment:
       - VPN_SERVICE_PROVIDER=$VPN_SERVICE_PROVIDER
       - VPN_TYPE=wireguard
