@@ -5,7 +5,7 @@ networks:
     
 services:
   gluetun:
-    image: qmcgaw/gluetun:v3  
+    image: qmcgaw/gluetun:v3.40  
     cap_add:
       - NET_ADMIN
     env_file:
