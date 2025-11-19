@@ -41,7 +41,7 @@ services:
       - ../stack.env
     environment:
       - WEBUI_PORT=8080
-      - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
+      # - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
       - PUID=99
       - PGID=100
       - UMASK=000
