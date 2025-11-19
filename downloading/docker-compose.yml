@@ -23,6 +23,7 @@ services:
       - VPN_PORT_FORWARDING_DOWN_COMMAND=$VPN_PORT_FORWARDING_DOWN_COMMAND
       - FIREWALL_OUTBOUND_SUBNETS=$FIREWALL_OUTBOUND_SUBNETS
       - DNS_KEEP_NAMESERVER=on
+      - PUBLICIP_ENABLED=false
       - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/downloading/gluetun:/gluetun
