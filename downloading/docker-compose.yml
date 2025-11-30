@@ -65,12 +65,9 @@ services:
         
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:5.1.4-libtorrentv1
-    network_mode: service:gluetun
-    env_file:
-      - ../stack.env
+    network_mode: service:pia
     environment:
       - WEBUI_PORT=8080
-      - TORRENTING_PORT=$FIREWALL_VPN_INPUT_PORTS
       - PUID=99
       - PGID=100
       - UMASK=000
@@ -126,7 +123,7 @@ services:
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
-    network_mode: service:gluetun
+    network_mode: service:pia
     environment:
       - PUID=99
       - PGID=100
