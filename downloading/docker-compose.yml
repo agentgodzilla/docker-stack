@@ -4,39 +4,65 @@ networks:
   external:
     
 services:
-  gluetun:
-    image: qmcgaw/gluetun:v3  
+  # gluetun:
+  #   image: qmcgaw/gluetun:v3  
+  #   cap_add:
+  #     - NET_ADMIN
+  #   env_file:
+  #     - ../stack.env
+  #   environment:
+  #     - VPN_SERVICE_PROVIDER=custom
+  #     - VPN_TYPE=wireguard
+  #     - WIREGUARD_ENDPOINT_IP=$VPN_ENDPOINT_IP
+  #     - WIREGUARD_ENDPOINT_PORT=$VPN_ENDPOINT_PORT
+  #     - WIREGUARD_PUBLIC_KEY=$WIREGUARD_PUBLIC_KEY
+  #     - WIREGUARD_PRIVATE_KEY=$WIREGUARD_PRIVATE_KEY
+  #     - WIREGUARD_ADDRESSES=$WIREGUARD_ADDRESSES
+  #     - FIREWALL_VPN_INPUT_PORTS=$FIREWALL_VPN_INPUT_PORTS
+  #     - FIREWALL_OUTBOUND_SUBNETS=$FIREWALL_OUTBOUND_SUBNETS
+  #     - DNS_KEEP_NAMESERVER=on
+  #     - PUBLICIP_API=ip2location
+  #     - PUBLICIP_API_TOKEN=$PUBLICIP_API_TOKEN
+  #     - TZ=America/Chicago
+  #     - HEALTH_VPN_DURATION_INITIAL=16s
+  #     - HEALTH_VPN_DURATION_ADDITION=15s
+  #     - HEALTH_SUCCESS_WAIT_DURATION=15s
+  #   volumes:
+  #     - /mnt/user/appdata/downloading/gluetun:/gluetun
+  #   networks:
+  #     - internal
+  #     - external
+  #   ports:
+  #     - 8080:8080 # qbit
+  #     - 8081:8081 # sabnzbd
+  #   restart: unless-stopped
+  pia:
+    image: thrnz/docker-wireguard-pia:latest
     cap_add:
-      - NET_ADMIN
-    env_file:
-      - ../stack.env
-    environment:
-      - VPN_SERVICE_PROVIDER=custom
-      - VPN_TYPE=wireguard
-      - WIREGUARD_ENDPOINT_IP=$VPN_ENDPOINT_IP
-      - WIREGUARD_ENDPOINT_PORT=$VPN_ENDPOINT_PORT
-      - WIREGUARD_PUBLIC_KEY=$WIREGUARD_PUBLIC_KEY
-      - WIREGUARD_PRIVATE_KEY=$WIREGUARD_PRIVATE_KEY
-      - WIREGUARD_ADDRESSES=$WIREGUARD_ADDRESSES
-      - FIREWALL_VPN_INPUT_PORTS=$FIREWALL_VPN_INPUT_PORTS
-      - FIREWALL_OUTBOUND_SUBNETS=$FIREWALL_OUTBOUND_SUBNETS
-      - DNS_KEEP_NAMESERVER=on
-      - PUBLICIP_API=ip2location
-      - PUBLICIP_API_TOKEN=$PUBLICIP_API_TOKEN
-      - TZ=America/Chicago
-      - HEALTH_VPN_DURATION_INITIAL=16s
-      - HEALTH_VPN_DURATION_ADDITION=15s
-      - HEALTH_SUCCESS_WAIT_DURATION=15s
+        - NET_ADMIN
     volumes:
-      - /mnt/user/appdata/downloading/gluetun:/gluetun
-    networks:
+        - /mnt/user/appdata/downloading/pia:/pia
+        - /mnt/user/appdata/downloading/pia/set_qbt_port.sh:/set_qbt_port.sh
+     networks:
       - internal
       - external
     ports:
-      - 8080:8080 # qbit
-      - 8081:8081 # sabnzbd
-    restart: unless-stopped
-    
+        - 8080:8080 # qbit
+        - 8081:8081 # sabnzbd
+    environment:
+        - LOCAL_NETWORK=$LOCAL_NETWORK
+        - LOC=$VPN_LOCATION
+        - USER=$VPN_USERAME
+        - PASS=$VPN_PASSWORD
+        - PORT_FORWARDING=1
+        - PORT_SCRIPT=/set_qbt_port.sh
+        - VPNDNS=$DNS_SERVERS
+        - PORT_FATAL=1
+        - ACTIVE_HEALTHCHECKS=1
+        - RECONNECT=1
+    sysctls:
+        - net.ipv4.conf.all.src_valid_mark=1
+        
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:5.1.4-libtorrentv1
     network_mode: service:gluetun
