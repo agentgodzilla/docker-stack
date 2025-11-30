@@ -24,7 +24,7 @@ services:
     volumes:
       - /mnt/user/appdata/downloading/pia:/pia
       - /mnt/user/appdata/downloading/pia/set_qbt_port.sh:/set_qbt_port.sh
-     networks:
+    networks:
       - internal
       - external
     ports:
