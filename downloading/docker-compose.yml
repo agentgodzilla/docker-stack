@@ -17,7 +17,6 @@ services:
       - PASS=$VPN_PASSWORD
       - PORT_FORWARDING=1
       - PORT_SCRIPT=/set_qbt_port.sh
-      - VPNDNS=$DNS_SERVERS
       - PORT_FATAL=1
       - ACTIVE_HEALTHCHECKS=1
       - RECONNECT=1
