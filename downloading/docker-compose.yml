@@ -4,38 +4,6 @@ networks:
   external:
     
 services:
-  # gluetun:
-  #   image: qmcgaw/gluetun:v3  
-  #   cap_add:
-  #     - NET_ADMIN
-  #   env_file:
-  #     - ../stack.env
-  #   environment:
-  #     - VPN_SERVICE_PROVIDER=custom
-  #     - VPN_TYPE=wireguard
-  #     - WIREGUARD_ENDPOINT_IP=$VPN_ENDPOINT_IP
-  #     - WIREGUARD_ENDPOINT_PORT=$VPN_ENDPOINT_PORT
-  #     - WIREGUARD_PUBLIC_KEY=$WIREGUARD_PUBLIC_KEY
-  #     - WIREGUARD_PRIVATE_KEY=$WIREGUARD_PRIVATE_KEY
-  #     - WIREGUARD_ADDRESSES=$WIREGUARD_ADDRESSES
-  #     - FIREWALL_VPN_INPUT_PORTS=$FIREWALL_VPN_INPUT_PORTS
-  #     - FIREWALL_OUTBOUND_SUBNETS=$FIREWALL_OUTBOUND_SUBNETS
-  #     - DNS_KEEP_NAMESERVER=on
-  #     - PUBLICIP_API=ip2location
-  #     - PUBLICIP_API_TOKEN=$PUBLICIP_API_TOKEN
-  #     - TZ=America/Chicago
-  #     - HEALTH_VPN_DURATION_INITIAL=16s
-  #     - HEALTH_VPN_DURATION_ADDITION=15s
-  #     - HEALTH_SUCCESS_WAIT_DURATION=15s
-  #   volumes:
-  #     - /mnt/user/appdata/downloading/gluetun:/gluetun
-  #   networks:
-  #     - internal
-  #     - external
-  #   ports:
-  #     - 8080:8080 # qbit
-  #     - 8081:8081 # sabnzbd
-  #   restart: unless-stopped
   pia:
     image: thrnz/docker-wireguard-pia:latest
     env_file:
