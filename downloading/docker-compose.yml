@@ -38,31 +38,34 @@ services:
   #   restart: unless-stopped
   pia:
     image: thrnz/docker-wireguard-pia:latest
+    env_file:
+      - ../stack.env
     cap_add:
-        - NET_ADMIN
+      - NET_ADMIN
+    environment:
+      - LOCAL_NETWORK=$LOCAL_NETWORK
+      - LOC=$VPN_LOCATION
+      - USER=$VPN_USERAME
+      - PASS=$VPN_PASSWORD
+      - PORT_FORWARDING=1
+      - PORT_SCRIPT=/set_qbt_port.sh
+      - VPNDNS=$DNS_SERVERS
+      - PORT_FATAL=1
+      - ACTIVE_HEALTHCHECKS=1
+      - RECONNECT=1
     volumes:
-        - /mnt/user/appdata/downloading/pia:/pia
-        - /mnt/user/appdata/downloading/pia/set_qbt_port.sh:/set_qbt_port.sh
+      - /mnt/user/appdata/downloading/pia:/pia
+      - /mnt/user/appdata/downloading/pia/set_qbt_port.sh:/set_qbt_port.sh
      networks:
       - internal
       - external
     ports:
-        - 8080:8080 # qbit
-        - 8081:8081 # sabnzbd
-    environment:
-        - LOCAL_NETWORK=$LOCAL_NETWORK
-        - LOC=$VPN_LOCATION
-        - USER=$VPN_USERAME
-        - PASS=$VPN_PASSWORD
-        - PORT_FORWARDING=1
-        - PORT_SCRIPT=/set_qbt_port.sh
-        - VPNDNS=$DNS_SERVERS
-        - PORT_FATAL=1
-        - ACTIVE_HEALTHCHECKS=1
-        - RECONNECT=1
+      - 8080:8080 # qbit
+      - 8081:8081 # sabnzbd
     sysctls:
         - net.ipv4.conf.all.src_valid_mark=1
-        
+    restart: unless-stopped
+    
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:5.1.4-libtorrentv1
     network_mode: service:pia
