@@ -221,7 +221,7 @@ services:
     environment:
       - ENABLE_WEB_UI=true
     volumes:
-      - /mnt/user/media/downloads:/downloads
+      - /mnt/user/media/downloads:/data/torrents
       - /mnt/user/appdata/downloading-extras/l4g/config.py:/Upload-Assistant/data/config.py
       - /mnt/user/appdata/downloading-extras/l4g/cookies:/Upload-Assistant/data/cookies
     networks:
