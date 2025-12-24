@@ -59,9 +59,6 @@ services:
     networks:
       - internal
       - external
-    depends_on:
-      qbittorrent:
-        condition: service_healthy
     restart: unless-stopped
     
   # portcheck:
