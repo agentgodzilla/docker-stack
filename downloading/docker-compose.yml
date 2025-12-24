@@ -45,6 +45,9 @@ services:
     volumes:
       - /mnt/user/appdata/downloading/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
+    depends_on:
+      pia:
+        condition: service_healthy
     restart: unless-stopped
 
   qui:
@@ -57,7 +60,8 @@ services:
       - internal
       - external
     depends_on:
-      - qbittorrent
+      qbittorrent:
+        condition: service_healthy
     restart: unless-stopped
     
   # portcheck:
@@ -103,4 +107,7 @@ services:
       - /mnt/user/media/downloads:/downloads
       - /mnt/user/media/downloads/nzb/incomplete:/incomplete-downloads
       - /mnt/user/appdata/downloading/sabnzbd:/config
+    depends_on:
+      pia:
+        condition: service_healthy
     restart: unless-stopped
