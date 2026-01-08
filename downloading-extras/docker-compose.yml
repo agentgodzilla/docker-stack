@@ -82,7 +82,7 @@ services:
   nemorosa:
     image: ghcr.io/kyokomiki/nemorosa:alpha-01efbd2
     user: 99:100
-    #command: "--server"
+    command: "--server"
     environment:
       - TZ=America/Chicago
     volumes:
