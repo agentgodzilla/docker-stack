@@ -82,6 +82,7 @@ services:
       - 3002:80
     depends_on:
       - immichserver
+    restart: unless-stopped
 
   immich-kiosk-people:
     image: ghcr.io/damongolding/immich-kiosk:latest
