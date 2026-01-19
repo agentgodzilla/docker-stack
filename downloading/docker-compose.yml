@@ -56,6 +56,7 @@ services:
       - 7476:7476
     volumes:
       -  /mnt/user/appdata/downloading/qui:/config
+      - /mnt/user/media/downloads/:/downloads
     networks:
       - internal
       - external
