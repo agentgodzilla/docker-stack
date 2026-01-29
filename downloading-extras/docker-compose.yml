@@ -223,7 +223,8 @@ services:
       - UA_BROWSE_ROOTS=/data,/Upload-Assistant/tmp
     volumes:
       - /mnt/user/media/downloads:/data
-      - /mnt/user/appdata/downloading-extras/l4g:/Upload-Assistant
+      - /mnt/user/appdata/downloading-extras/l4g/data:/Upload-Assistant/data
+      - /mnt/user/appdata/downloading-extras/l4g/tmp:/Upload-Assistant/tmp
     networks:
       - internal
       - external
