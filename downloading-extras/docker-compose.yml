@@ -224,6 +224,7 @@ services:
     volumes:
       - /mnt/user/media/downloads:/data
       - /mnt/user/appdata/downloading-extras/l4g:/Upload-Assistant/data
+      - /mnt/user/appdata/downloading-extras/l4g/tmp:/Upload-Assistant/tmp
     networks:
       - internal
       - external
