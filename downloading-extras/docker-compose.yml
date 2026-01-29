@@ -220,11 +220,10 @@ services:
     environment:
       - SESSION_SECRET_FILE=/Upload-Assistant/data/session_secret
       - IN_DOCKER=1
-      - UA_BROWSE_ROOTS=/data
+      - UA_BROWSE_ROOTS=/data,/Upload-Assistant/tmp
     volumes:
       - /mnt/user/media/downloads:/data
       - /mnt/user/appdata/downloading-extras/l4g:/Upload-Assistant/data
-      - /mnt/user/appdata/downloading-extras/l4g/tmp:/Upload-Assistant/tmp
     networks:
       - internal
       - external
