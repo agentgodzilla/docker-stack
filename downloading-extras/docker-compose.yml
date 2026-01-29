@@ -225,6 +225,7 @@ services:
       - /mnt/user/media/downloads:/data
       - /mnt/user/appdata/downloading-extras/l4g/data:/Upload-Assistant/data
       - /mnt/user/appdata/downloading-extras/l4g/tmp:/Upload-Assistant/tmp
+      - /mnt/user/appdata/downloading-extras/l4g/webui-auth:/root/.config/upload-assistant
     networks:
       - internal
       - external
