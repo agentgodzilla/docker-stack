@@ -218,7 +218,7 @@ services:
     image: ghcr.io/audionut/upload-assistant:latest
     user: "99:100" 
     environment:
-      - SESSION_SECRET_FILE=/Upload-Assistant/data/session_secret
+      #- SESSION_SECRET_FILE=/Upload-Assistant/data/session_secret
       - IN_DOCKER=1
       - UA_BROWSE_ROOTS=/data,/Upload-Assistant/tmp
     volumes:
