@@ -80,7 +80,7 @@ services:
     restart: unless-stopped
     
   nemorosa:
-    image: ghcr.io/kyokomiki/nemorosa:alpha-f2b0da3
+    image: ghcr.io/kyokomiki/nemorosa:alpha-8b788af
     user: 99:100
     command: "--server"
     environment:
