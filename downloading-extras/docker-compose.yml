@@ -215,7 +215,7 @@ services:
     restart: unless-stopped
     
   upload-assistant:
-    image: ghcr.io/audionut/upload-assistant:latest
+    image: ghcr.io/audionut/upload-assistant:master
     entrypoint: /bin/bash
     command: ["--webui", "0.0.0.0:5000"]
     environment:
