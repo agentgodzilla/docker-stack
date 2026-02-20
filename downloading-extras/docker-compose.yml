@@ -216,7 +216,6 @@ services:
     
   upload-assistant:
     image: ghcr.io/audionut/upload-assistant:master
-    entrypoint: /bin/bash
     command: ["--webui", "0.0.0.0:5000"]
     environment:
       - PUID=99
