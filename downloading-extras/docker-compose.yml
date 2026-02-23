@@ -234,4 +234,10 @@ services:
       - downloading_internal
     ports:
       - 5000:5000
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
     restart: unless-stopped
