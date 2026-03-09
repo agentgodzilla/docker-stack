@@ -219,7 +219,7 @@ services:
     environment:
       - PUID=99
       - PGID=100
-      - UMASK=022
+      - UMASK=000
       - TZ=America/Chicago  # Optional: Set your timezone
     volumes:
       - /mnt/user/appdata/downloading-extras/sportarr:/config
