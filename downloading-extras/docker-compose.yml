@@ -215,12 +215,12 @@ services:
     restart: unless-stopped
 
   sportarr:
-    image: sportarr/sportarr:latest
+    image: sportarr/sportarr:dev
     environment:
       - PUID=99
       - PGID=100
       - UMASK=000
-      - TZ=America/Chicago  # Optional: Set your timezone
+      - TZ=America/Chicago
     volumes:
       - /mnt/user/appdata/downloading-extras/sportarr:/config
       - /mnt/user/media:/data
