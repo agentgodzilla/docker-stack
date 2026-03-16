@@ -126,7 +126,6 @@ services:
     ports:
       - 8989:8989
     depends_on:
-      # - jackett
       - prowlarr
     restart: unless-stopped
     
@@ -147,7 +146,6 @@ services:
     ports:
       - 7878:7878
     depends_on:
-      # - jackett
       - prowlarr
     restart: unless-stopped
 
@@ -168,7 +166,6 @@ services:
     ports:
       - 8686:8686
     depends_on:
-      # - jackett
       - prowlarr
     restart: unless-stopped
       
@@ -189,7 +186,6 @@ services:
     ports:
       - 8787:8787
     depends_on:
-      # - jackett
       - prowlarr
     restart: unless-stopped
 
@@ -210,7 +206,6 @@ services:
     ports:
       - 8788:8787
     depends_on:
-      # - jackett
       - prowlarr
     restart: unless-stopped
 
@@ -230,6 +225,8 @@ services:
       - downloading_internal
     ports:
       - 1867:1867
+    depends_on:
+      - prowlarr
     restart: unless-stopped
     
   upload-assistant:
@@ -253,7 +250,7 @@ services:
       - 5000:5000
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://localhost:5000/api/health"]
-      interval: 30s
+      interval: 60s
       timeout: 5s
       start_period: 10s
       retries: 3
