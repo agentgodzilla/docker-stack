@@ -210,7 +210,7 @@ services:
     restart: unless-stopped
 
   sportarr:
-    image: sportarr/sportarr:dev
+    image: sportarr/sportarr:latest
     environment:
       - PUID=99
       - PGID=100
