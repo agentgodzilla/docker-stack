@@ -68,6 +68,7 @@ services:
     network_mode: "service:pia"
     environment:
       TZ: America/Chicago
+      MOUSEHOLE_INSECURE_ALLOW_NO_AUTH: true
     volumes:
       - /mnt/user/appdata/downloading/mousehole:/srv/mousehole
     restart: unless-stopped
