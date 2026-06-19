@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:5.2.1-libtorrentv1
+    image: lscr.io/linuxserver/qbittorrent:5.2.2-libtorrentv1
     network_mode: service:pia
     environment:
       - WEBUI_PORT=8080
