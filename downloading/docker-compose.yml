@@ -72,7 +72,7 @@ services:
       MOUSEHOLE_ALLOWED_HOSTS: "*"
       MOUSEHOLE_ALLOWED_ORIGINS: "*"
     volumes:
-      - /mnt/user/appdata/downloading/mousehole:/srv/mousehole
+      - /mnt/user/appdata/downloading/mousehole:/var/lib/mousehole
     restart: unless-stopped
 
   sabnzbd:
