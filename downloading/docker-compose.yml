@@ -52,7 +52,7 @@ services:
     restart: unless-stopped
 
   qui:
-    image: ghcr.io/autobrr/qui:latest
+    image: ghcr.io/autobrr/qui:v1.19
     ports:
       - 7476:7476
     volumes:
