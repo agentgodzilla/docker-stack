@@ -34,6 +34,7 @@ services:
       - SMTP_USER=$SMTP_USER
       - SMTP_PASSWORD=$SMTP_PASSWORD
       - TOKEN_TIME=2880
+      - SCRAPER_FLARESOLVERR_URL="http://flaresolverr:8191"
     networks:
       - external
       - internal
@@ -66,5 +67,17 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+    restart: unless-stopped
+
+flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=America/Chicago
+    networks:
+      - internal
+      - external
     restart: unless-stopped
   
