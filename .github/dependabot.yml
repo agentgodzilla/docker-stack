@@ -3,4 +3,6 @@ updates:
   - package-ecosystem: "docker-compose"
     directory: "/downloading" 
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    cooldown:
+      default-days: 1
