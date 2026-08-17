@@ -6,3 +6,6 @@ updates:
       interval: "daily"
     cooldown:
       default-days: 1
+    commit-message:
+      prefix: "(downloading) updated"
+      include: "scope"
