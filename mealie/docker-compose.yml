@@ -33,7 +33,6 @@ services:
       - SMTP_FROM_EMAIL=$SMTP_FROM_EMAIL
       - SMTP_USER=$SMTP_USER
       - SMTP_PASSWORD=$SMTP_PASSWORD
-      - TOKEN_TIME=2880
       - SCRAPER_FLARESOLVERR_URL=http://flaresolverr:8191
     networks:
       - external
