@@ -13,9 +13,14 @@ services:
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
+      - PIXELFLUX_WAYLAND=true
+      - DRINODE=/dev/dri/renderD128
+      - DRI_NODE=/dev/dri/renderD128
     volumes:
       - /mnt/user/appdata/calibre/calibre:/config
       - /mnt/user/media:/data
+    devices:
+      - /dev/dri:/dev/dri
     networks:
       - internal
       - external
@@ -24,6 +29,7 @@ services:
       - 9080:8080
       - 9181:8181
       - 9081:8081
+    shm_size: "1gb"
     restart: unless-stopped
     
   calibreweb:
