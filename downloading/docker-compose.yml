@@ -54,7 +54,7 @@ services:
   qui:
     image: ghcr.io/autobrr/qui:v1.28
     environment:
-      - QUI__BACKUP_DIR="/backup"
+      - QUI__BACKUP_DIR='/backup'
       - QUI__QBITTORRENT_TIMEOUT=129
       - PUID=99
       - PGID=100
