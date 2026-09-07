@@ -53,11 +53,18 @@ services:
 
   qui:
     image: ghcr.io/autobrr/qui:v1.28
+    environment:
+      - QUI__BACKUP_DIR="/backup"
+      - QUI__QBITTORRENT_TIMEOUT=129
+      - PUID=99
+      - PGID=100
+      - UMASK=000
     ports:
       - 7476:7476
     volumes:
-      -  /mnt/user/appdata/downloading/qui:/config
+      - /mnt/user/appdata/downloading/qui:/config
       - /mnt/user/media/downloads/:/downloads
+      - /mnt/user/backup/qui:/backup
     networks:
       - internal
       - external
