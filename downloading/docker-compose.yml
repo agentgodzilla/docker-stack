@@ -52,7 +52,7 @@ services:
     restart: unless-stopped
 
   qui:
-    image: ghcr.io/autobrr/qui:v1.28
+    image: ghcr.io/autobrr/qui:v1.29
     environment:
       - QUI__BACKUP_DIR=/backup
       - QUI__QBITTORRENT_TIMEOUT=129
