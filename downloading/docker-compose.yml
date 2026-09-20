@@ -82,6 +82,9 @@ services:
       MOUSEHOLE_ALLOWED_ORIGINS: "*"
     volumes:
       - /mnt/user/appdata/downloading/mousehole:/var/lib/mousehole
+    depends_on:
+      pia:
+        condition: service_healthy
     restart: unless-stopped
 
   sabnzbd:
