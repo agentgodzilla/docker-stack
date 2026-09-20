@@ -68,6 +68,8 @@ services:
     networks:
       - internal
       - external
+    depends_on:
+      - qbittorrent
     restart: unless-stopped
   
   mousehole:
