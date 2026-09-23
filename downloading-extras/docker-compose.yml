@@ -45,24 +45,24 @@ services:
   #     - flaresolverr
   #   restart: unless-stopped
  
-  crossseed:
-    image: ghcr.io/cross-seed/cross-seed:6
-    user: 99:100
-    command: daemon
-    volumes:
-      - /mnt/user/appdata/downloading-extras/cross-seed:/config
-      - /mnt/user/media/downloads:/downloads
-    networks:
-      - internal
-      - downloading_internal
-    ports:
-      - 2468:2468
-    depends_on:
-      # - jackett
-      - prowlarr
-      - sonarr
-      - radarr
-    restart: unless-stopped
+  # crossseed:
+  #   image: ghcr.io/cross-seed/cross-seed:6
+  #   user: 99:100
+  #   command: daemon
+  #   volumes:
+  #     - /mnt/user/appdata/downloading-extras/cross-seed:/config
+  #     - /mnt/user/media/downloads:/downloads
+  #   networks:
+  #     - internal
+  #     - downloading_internal
+  #   ports:
+  #     - 2468:2468
+  #   depends_on:
+  #     # - jackett
+  #     - prowlarr
+  #     - sonarr
+  #     - radarr
+  #   restart: unless-stopped
 
   autobrr:
     image: ghcr.io/autobrr/autobrr:latest
@@ -79,21 +79,21 @@ services:
       - 7474:7474
     restart: unless-stopped
     
-  nemorosa:
-    image: ghcr.io/kyokomiki/nemorosa:latest
-    user: 99:100
-    command: "--server"
-    environment:
-      - TZ=America/Chicago
-    volumes:
-      - /mnt/user/appdata/downloading-extras:/app/data
-    networks:
-      - internal
-      - external
-      - downloading_internal
-    ports:
-      - 8256:8256
-    restart: unless-stopped
+  # nemorosa:
+  #   image: ghcr.io/kyokomiki/nemorosa:latest
+  #   user: 99:100
+  #   command: "--server"
+  #   environment:
+  #     - TZ=America/Chicago
+  #   volumes:
+  #     - /mnt/user/appdata/downloading-extras:/app/data
+  #   networks:
+  #     - internal
+  #     - external
+  #     - downloading_internal
+  #   ports:
+  #     - 8256:8256
+  #   restart: unless-stopped
       
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
