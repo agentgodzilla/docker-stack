@@ -8,8 +8,6 @@ networks:
 services:
   vaultwarden:
     image: vaultwarden/server:latest
-    env_file:
-      - ../stack.env
     environment:
       - DOMAIN=$DOMAIN
       - DATABASE_URL=$DATABASE_URL
@@ -29,8 +27,6 @@ services:
 
   postgres:
     image: postgres:14
-    env_file:
-      - ../stack.env
     environment:
       - POSTGRES_USER=$DB_USERNAME
       - POSTGRES_PASSWORD=$DB_PASSWORD
