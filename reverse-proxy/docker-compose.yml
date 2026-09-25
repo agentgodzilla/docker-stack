@@ -32,8 +32,6 @@ services:
 #
   caddy:
     image: ghcr.io/agentgodzilla/caddy-cloudflare-dynamicdns:latest
-    env_file:
-      - ../stack.env
     environment:
       - CLOUDFLARE_EMAIL=$CLOUDFLARE_EMAIL
       - CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN
