@@ -45,8 +45,7 @@ services:
       - /mnt/user/appdata/downloading/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
     depends_on:
-      pia:
-        condition: service_healthy
+      - pia
     restart: unless-stopped
 
   qui:
