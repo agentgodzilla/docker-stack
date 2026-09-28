@@ -6,8 +6,6 @@ networks:
 services:
   pia:
     image: thrnz/docker-wireguard-pia:latest
-    env_file:
-      - ../stack.env
     cap_add:
       - NET_ADMIN
     environment:
