@@ -175,6 +175,9 @@ services:
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
+      - GOOGLE_BOOKS_API_KEY=$GOOGLE_BOOKS_API_KEY
+      - READARR_API_KEY=$READARR_API_KEY
+      - READARR_URL=http://localhost:8787
     volumes:
       - /mnt/user/appdata/downloading-extras/readarr:/config
       - /mnt/user/media:/data
