@@ -168,7 +168,8 @@ services:
     restart: unless-stopped
       
   readarr:
-    image: lscr.io/linuxserver/readarr:0.4.19-nightly
+    image: ricetim/readarr-rresurrected:latest
+    user: "99:100"
     environment:
       - PUID=99
       - PGID=100
