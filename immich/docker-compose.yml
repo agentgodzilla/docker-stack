@@ -123,7 +123,7 @@ services:
       # Image metadata
       # More info actions
       # Kiosk settings
-      KIOSK_BEHIND_PROXY: true
+      #KIOSK_BEHIND_PROXY: true
     networks:
       - internal
     depends_on:
@@ -164,7 +164,7 @@ services:
       # Image metadata
       # More info actions
       # Kiosk settings
-      KIOSK_BEHIND_PROXY: true
+      #KIOSK_BEHIND_PROXY: true
     networks:
       - internal
     depends_on:
