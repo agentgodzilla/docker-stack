@@ -102,6 +102,7 @@ services:
       KIOSK_TIME_FORMAT: 12
       KIOSK_SHOW_DATE: true
       KIOSK_DATE_FORMAT: "DDDD MMMM DD YYYY"
+      KIOSK_CLOCK_SOURCE: server
       # Kiosk behaviour
       KIOSK_DISABLE_SCREENSAVER: true
       # Asset sources
@@ -148,6 +149,7 @@ services:
       KIOSK_TIME_FORMAT: 12
       KIOSK_SHOW_DATE: true
       KIOSK_DATE_FORMAT: "DDDD MMMM DD YYYY"
+      KIOSK_CLOCK_SOURCE: server
       # Kiosk behaviour
       KIOSK_DISABLE_SCREENSAVER: true
       # Asset sources
