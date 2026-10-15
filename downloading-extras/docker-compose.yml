@@ -255,3 +255,15 @@ services:
       start_period: 10s
       retries: 3
     restart: unless-stopped
+
+  upbrr:
+    image: ghcr.io/autobrr/upbrr:latest
+    user: 99:100
+    environment:
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/user/media/downloads:/downloads
+      - /mnt/user/appdata/downloading-extras/upbrr:/config
+    ports:
+      - 7480:7480
+    restart: unless-stopped
