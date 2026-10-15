@@ -33,8 +33,6 @@ services:
       postgres:
         condition: service_healthy
         restart: true
-    post_start:
-      - command: curl -X POST $HA_WEBHOOK
     restart: unless-stopped
 
   immich-machine-learning:
@@ -95,6 +93,8 @@ services:
       immich-kiosk-animals:
         condition: service_healthy
         restart: true
+    post_start:
+      - command: curl -X POST $HA_WEBHOOK
     restart: unless-stopped
 
   immich-kiosk-people:
