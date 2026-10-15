@@ -263,7 +263,7 @@ services:
       - TZ=America/Chicago
     volumes:
       - /mnt/user/media/downloads:/downloads
-      - /mnt/user/appdata/downloading-extras/upbrr:/config
+      - /mnt/user/appdata/downloading-extras/upbrr:/config/upbrr
     networks:
       - internal
       - external
