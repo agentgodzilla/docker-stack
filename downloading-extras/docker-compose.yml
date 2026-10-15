@@ -264,6 +264,10 @@ services:
     volumes:
       - /mnt/user/media/downloads:/downloads
       - /mnt/user/appdata/downloading-extras/upbrr:/config
+    networks:
+      - internal
+      - external
+      - downloading_internal
     ports:
       - 7480:7480
     restart: unless-stopped
