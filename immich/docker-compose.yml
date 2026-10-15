@@ -94,7 +94,7 @@ services:
         condition: service_healthy
         restart: true
     post_start:
-      - command: ["sh", "-c", "curl -vvv -X POST ${HA_WEBHOOK} >> /config/post_start.log 2>&1"]
+      - command: ["sh", "-c", "curl -vvv -X POST ${HA_WEBHOOK} > /config/post_start.log 2>&1"]
     restart: unless-stopped
 
   immich-kiosk-people:
