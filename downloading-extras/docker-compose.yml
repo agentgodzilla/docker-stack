@@ -280,8 +280,6 @@ services:
       - PUID=99
       - PGID=100
       - SALMON_WEB_TOKEN=$SALMON_WEB_TOKEN
-    ports:
-      - "55155:55155"
     volumes:
       - /mnt/user/media/downloads:/downloads
       - /mnt/user/appdata/downloading-extras/salmon:/config
@@ -289,4 +287,6 @@ services:
       - internal
       - external
       - downloading_internal
+    ports:
+      - "55155:55155"
     restart: unless-stopped
