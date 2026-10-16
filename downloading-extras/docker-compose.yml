@@ -279,6 +279,7 @@ services:
     environment:
       - PUID=99
       - PGID=100
+      - SALMON_WEB_TOKEN=$SALMON_WEB_TOKEN
     ports:
       - "55155:55155"
     volumes:
