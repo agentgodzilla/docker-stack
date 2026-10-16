@@ -285,3 +285,8 @@ services:
     volumes:
       - /mnt/user/media/downloads:/downloads
       - /mnt/user/appdata/downloading-extras/salmon:/config
+    networks:
+      - internal
+      - external
+      - downloading_internal
+    restart: unless-stopped
