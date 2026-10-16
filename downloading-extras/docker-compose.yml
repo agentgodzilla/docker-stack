@@ -271,3 +271,16 @@ services:
     ports:
       - 7480:7480
     restart: unless-stopped
+
+  smoked-salmon:
+    image: ghcr.io/smokin-salmon/smoked-salmon:latest
+    command: web --host 0.0.0.0
+    user: 99:100
+    environment:
+      - PUID=99
+      - PGID=100
+    ports:
+      - "55155:55155"
+    volumes:
+      - /mnt/user/media/downloads:/downloads
+      - /mnt/user/appdata/downloading-extras/salmon:/config
