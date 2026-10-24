@@ -2,7 +2,8 @@ networks:
   internal:
     internal: true
   external:
-
+    enable_ipv6: true
+    
 services:
 #   swag:
 #     image: lscr.io/linuxserver/swag
