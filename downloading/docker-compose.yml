@@ -5,7 +5,7 @@ networks:
     
 services:
   pia:
-    image: thrnz/docker-wireguard-pia:latest
+    image: ghcr.io/thrnz/docker-wireguard-pia:latest
     cap_add:
       - NET_ADMIN
     environment:
@@ -30,6 +30,9 @@ services:
       - 5010:5010 # mousehole
     sysctls:
         - net.ipv4.conf.all.src_valid_mark=1
+        - net.ipv6.conf.default.disable_ipv6=1
+        - net.ipv6.conf.all.disable_ipv6=1
+        - net.ipv6.conf.lo.disable_ipv6=1
     restart: unless-stopped
     
   qbittorrent:
@@ -44,6 +47,10 @@ services:
     volumes:
       - /mnt/user/appdata/downloading/qbittorrent:/config
       - /mnt/user/media/downloads/:/downloads
+    depends_on:
+      pia:
+        condition: service_healthy
+    stop_grace_period: "60s"
     restart: unless-stopped
 
   qui:
