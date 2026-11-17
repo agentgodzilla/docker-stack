@@ -190,12 +190,14 @@ services:
     restart: unless-stopped
 
   readarraudiobooks:
-    image: lscr.io/linuxserver/readarr:0.4.19-nightly
+    image: ricetim/readarr-rresurrected:latest
+    user: "99:100"
     environment:
       - PUID=99
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
+      - GOOGLE_BOOKS_API_KEY=$GOOGLE_BOOKS_API_KEY
     volumes:
       - /mnt/user/appdata/downloading-extras/readarr-audiobook:/config
       - /mnt/user/media:/data
