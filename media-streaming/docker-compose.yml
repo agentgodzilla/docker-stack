@@ -18,19 +18,7 @@ services:
       - DOCKER_MODS=linuxserver/mods:universal-cron
     devices:
       - /dev/dri:/dev/dri
-    networks:
-      - internal
-      - external
-    ports:
-      - 32400:32400
-      - 1900:1900/udp
-      - 5354:5353/udp
-      - 8324:8324
-      - 32410:32410/udp
-      - 32412:32412/udp
-      - 32413:32413/udp
-      - 32414:32414/udp
-      - 32469:32469
+    network_mode: host
     volumes:
       - /mnt/user/appdata/media-streaming/Plex-Media-Server:/config
       - /mnt/user/media:/data
