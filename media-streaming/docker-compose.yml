@@ -14,10 +14,9 @@ services:
       - PGID=100
       - UMASK=000
       - TZ=America/Chicago
-      - DOCKER_MODS=linuxserver/mods:universal-cron
     devices:
       - /dev/dri:/dev/dri
-     networks:
+    networks:
       - internal
       - external
     ports:
