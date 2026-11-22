@@ -2,6 +2,7 @@ networks:
   internal:
     internal: true
   external:
+    enable_ipv6: true
   reverse-proxy_internal:
     external: true
 
