@@ -15,8 +15,6 @@ services:
       - PUID=99
       - PGID=100
       - TZ=America/Chicago
-      - MAX_WORKERS=1
-      - WEB_CONCURRENCY=1
       - BASE_URL=$DOMAIN
       - DB_ENGINE=postgres
       - POSTGRES_USER=$POSTGRES_USER
@@ -32,6 +30,7 @@ services:
       - SMTP_USER=$SMTP_USER
       - SMTP_PASSWORD=$SMTP_PASSWORD
       - SCRAPER_FLARESOLVERR_URL=http://flaresolverr:8191
+      - TOKEN_TIME=1440
     networks:
       - external
       - internal
