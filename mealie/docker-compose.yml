@@ -15,7 +15,6 @@ services:
       - PUID=99
       - PGID=100
       - TZ=America/Chicago
-      - BASE_URL=$DOMAIN
       - DB_ENGINE=postgres
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
